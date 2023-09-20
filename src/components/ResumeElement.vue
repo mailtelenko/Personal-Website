@@ -1,12 +1,14 @@
 <template>
-  <div v-bind:class="{ 'expand' : expand_element}">
+  <div v-bind:class = "{'expand' : expand_element}">
+    <div class="template_pin"> </div>
     <div
-      v-on:click="toggle_element"
-      v-click-outside="hide"
-      :class="{'expanded' : expand_element}"
-      v-bind:style="{ 'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + element_data.accent + '), url(/images/' + element_data.image + ')'}"
+      v-on:click      = "toggle_element"
+      v-click-outside = "hide"
+      :class          = "{'expanded' : expand_element}"
+      v-bind:style    = "{'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + element_data.accent + '), url(/images/' + element_data.image + ')'}"
+      class           = "resume_element_container"   
     >
-      <div class="above_fold">
+      <div class="resume_header">
         <h3>{{ element_data.name }}</h3>
         <p class="year">{{ element_data.dates }}</p>
 
@@ -15,16 +17,22 @@
         </div>
       </div>
 
-      <div :class="{'expand_below_fold': expand_element}" class="below_fold">
-        <p v-show="element_data.location != null" class="location">
+      <div 
+        :class = "{'expand_below_fold': expand_element}" 
+        class  = "below_fold"
+      >
+        <p 
+          v-show = "element_data.location != null" 
+          class  = "location"
+        >
           <font-awesome-icon class="icon" icon="map-marker-alt" />
           {{ element_data.location }}
         </p>
 
         <div
-          id="expand_points_cont"
-          v-on:click="click_point"
-          v-bind:class="{ 'expand' : expand_element}"
+          id           = "expand_points_cont"
+          v-on:click   = "click_point"
+          v-bind:class = "{'expand' : expand_element}"
         >
           <CardScroll :element_data="element_data"></CardScroll>
         </div>
@@ -34,59 +42,110 @@
 </template>
 
 <style scoped>
-.resume_element::after {
-  content: " ";
-
-  width: 16px;
+/*
+  Pin adjacent to the element that is placed on the timeline
+*/
+.template_pin {
+  width:  16px;
   height: 16px;
 
   background-color: var(--background-colour);
 
   position: absolute;
 
-  left: 29px;
-  top: 71px;
+  /* Timeline is 90px in width, 
+     circle width is 16px
+     border width is 5px (each side) */
+  left: calc(-1 * (45px + 8px + 5px));
 
-  border: solid 5px var(--panel_dark_embed);
+  /*
+    Height of the element is 130px
+    Circle width is 16px
+    border width is 5px
+
+    TODO: Fix hover
+  */
+  top:  calc(130px/2 - 8px - 5px);
+
+
+  border:        solid 5px var(--panel_dark_embed);
   border-radius: 100%;
 }
 
-.resume_element > div {
-  margin: 30px 0px 0px 90px;
+/*
+  Parent div for the entire element
+*/
+.resume_element {
+  margin-left:   90px; /* Margin for the timeline */
+  margin-bottom: 30px; /* Margin between elements */
 
-  padding: 35px 30px;
-  min-height: 120px;
+  /* Position relative for the timeline pin placement */
+  position: relative;
+}
+
+/*
+  Parent div for the resume element box
+*/
+.resume_element_container {  
+
+  /* 
+    We have to specify the max height here instead of just height
+    in order for the opening animation to occur smoothly
+  */
+  height:     auto;
   max-height: 130px;
 
-  background-size: cover;
-  background-position: center;
-
   position: relative;
+  display:  block;
 
+  /* Configure the interior as a grid */
+  grid-template-columns: 45% 55%;
+  grid-template-rows:    auto;
+
+  /* Configure the background */
+  background-size:     cover;
+  background-position: center;
+  box-shadow:          -1px 6px 15px var(--box_shadow_colour);
+
+  /* Hide below the fold content */
   overflow: hidden;
 
-  display: inline-grid;
+  border-radius:       8px;
 
-  width: calc(100% - 90px - (35px * 2) - 30px);
-
-  grid-template-columns: 45% 55%;
-  grid-template-rows: auto;
-
-  border-radius: 8px;
   transition-duration: 0.6s;
-
-  box-shadow: -1px 6px 15px var(--box_shadow_colour);
 }
 
 .expand > div {
-  max-height: 800px;
+  max-height: 1000px;
 
-  grid-template-columns: 45% 55%;
-
-  overflow-x: visible !important;
+  overflow-x: visible; /* TODO: Needed? */
 
   transition-duration: 1s;
 }
+
+/*
+  Header of the element. Visible before and after the element is
+  expanded.
+*/
+.resume_element .resume_header {
+  height: 130px; /* TODO: Change to var? */
+  width:  100%;
+
+  display:  inline-block;
+  position: relative;
+
+
+  /* Configure the padding without affecting the width/height */
+  -moz-box-sizing:    border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing:         border-box;
+  
+  padding-top:  15px;
+  padding-left: 20px;
+
+  background-color:green;
+}
+
 
 .resume_element h3 {
   height: auto;
@@ -102,10 +161,8 @@
 }
 
 .resume_element .year {
-  margin: 0px;
+  margin:     0px;
   margin-top: 11px;
-
-  position: relative;
 
   height: auto;
 
@@ -113,12 +170,11 @@
 }
 
 .resume_element .intro {
-  margin-top: 8px;
-  position: relative;
+  margin-top: 0px;
+
+  width: 100%;
 
   font-size: 1.15rem;
-  height: calc(120px - 1.15rem - 40px);
-  line-height: calc(120px - 1.15rem - 30px);
   word-wrap: none;
 }
 
@@ -139,15 +195,6 @@
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
-}
-
-.resume_element .above_fold {
-  height: 155px;
-  width: 100%;
-
-  display: inline-block;
-
-  position: relative;
 }
 
 .resume_element > div:hover {
@@ -199,8 +246,8 @@ import CardScroll from "./CardScroll.vue";
 
 export default {
   props: {
-    title: String,
-    element_data: Object,
+    title:         String,
+    element_data:  Object,
     display_props: Object
   },
 

@@ -19,8 +19,7 @@
   white-space: normal;
 
   margin-bottom: 20px;
-
-  margin-left: 4px;
+  margin-left:   4px;
 
 
   box-shadow: 0px 8px 8px var(--box_shadow_colour);

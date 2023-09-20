@@ -17,7 +17,7 @@ export let data = {
   show_dropdown: false,
 
 
-  resume_section: "",
+  resume_section: "education",
   resume_elements: {
     education: {
       name: "education",
@@ -31,7 +31,7 @@ export let data = {
         {
           name:        "McMaster University",
           dates:       "2019 - Present",
-          description: "Computer Engineering <br/>(co-op)",
+          description: "Computer Engineering, (Co-Op)",
           image:       "mcmaster.jpg",
           points: [
             {
@@ -70,7 +70,7 @@ export let data = {
           name:        "William Lyon Mackenzie",
           dates:       "2015 - 2019",
           location:    "Toronto, ON",
-          description: "MaCS (Math and Computer Science)<br/>OSSD",
+          description: "OSSD, MaCS (Math and Computer Science)",
           points: [
             {
               title: "Course Highlights",

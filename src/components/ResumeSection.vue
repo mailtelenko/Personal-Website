@@ -3,57 +3,35 @@
     class="resume_page"
     :class="{'half': display_props.size == 'half', 'slim': display_props.size == 'slim', 'no_timeline' : !display_props.timeline}"
   >
+    
+    <Timeline
+      :class="{'no_timeline' : !display_props.timeline }"
+    ></Timeline>
+
     <ResumeElement
       class="resume_element"
-      :class="{'half': display_props.size == 'half', 'slim': display_props.size == 'slim', 'no_timeline' : !display_props.timeline }"
-      v-for="element in resume_elements"
-      v-bind:key="element.name"
-      :display_props="display_props"
-      :element_data="element"
+      :class="{'half': display_props.size == 'half', 'slim': display_props.size == 'slim'}"
+      
+      v-for          = "element in resume_elements"
+      v-bind:key     = "element.name"
+      :display_props = "display_props"
+      :element_data  = "element"
     ></ResumeElement>
   </div>
 </template>
 
 <style>
-.resume_page::before {
-  content: "   ";
-  position: absolute;
-
-  /*background-color: var(--accent_opp_highlight);
-*/
-  background-color: var(--box_shadow_colour);
-  width: 4px;
-  height: calc(100% - 140px);
-
-  overflow: visible;
-
-  top: 80px;
-  left: 40px;
-
-  border-radius: 40px;
-}
-
-.no_timeline::before,
-.no_timeline::after {
-  display: none;
-}
-
 /*
-    Half size
+  Half size
 */
 
 .resume_page {
   padding-bottom: 20px;
+  padding-right:  30px;
 
   position: relative;
 
   height: auto;
-}
-
-.resume_element {
-  width: 100%;
-
-  position: relative;
 }
 
 .resume_page.half,
@@ -77,7 +55,7 @@
   width: 100%;
 
   padding-left: 90px;
-    width: calc(100% - 50px);
+  width: calc(100% - 50px);
 }
 
 .resume_element.half > div,
@@ -127,18 +105,20 @@
 
 <script>
 import ResumeElement from "./ResumeElement.vue";
+import Timeline      from "./Timeline.vue";
 
 export default {
-  name: "ResumeComponent",
+  name: "ResumeSection",
 
   props: {
-    title: String,
+    title:           String,
     resume_elements: Array,
-    display_props: Object
+    display_props:   Object
   },
 
   components: {
-    ResumeElement: ResumeElement
+    ResumeElement: ResumeElement,
+    Timeline
   },
 
   data() {

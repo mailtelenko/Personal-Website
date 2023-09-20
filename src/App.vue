@@ -43,7 +43,7 @@
         </form>
       </div>
 
-      <ResumeComponent
+      <ResumeSection
         v-if="resume_section != ''"
         :resume_elements="resume_elements[resume_section].elements"
         :display_props="resume_elements[resume_section].display_props"
@@ -68,9 +68,9 @@
 </template>
 
 <script>
-import Profile from "./components/Profile.vue";
-import ResumeComponent from "./components/ResumeComponent.vue";
-import Contact from "./components/Contact.vue";
+import Profile       from "./components/Profile.vue";
+import ResumeSection from "./components/ResumeSection.vue";
+import Contact       from "./components/Contact.vue";
 
 import * as info from "./assets/data.js";
 
@@ -78,7 +78,7 @@ export default {
   name: "App",
   components: {
     Profile,
-    ResumeComponent,
+    ResumeSection,
     Contact
   },
 
@@ -137,20 +137,20 @@ export default {
 <style>
 /* Variable declaration */
 :root {
-  --background-colour: rgb(228, 228, 228);
+  --background-colour:rgb(228, 228, 228);
 
-  --panel_colour: rgb(247, 247, 247);
-  --panel_hover: rgb(235, 235, 235);
-  --panel_embed: rgb(207, 207, 207);
+  --panel_colour:     rgb(247, 247, 247);
+  --panel_hover:      rgb(235, 235, 235);
+  --panel_embed:      rgb(207, 207, 207);
   --panel_dark_embed: rgb(145, 145, 145);
-  --panel_overlay: rgba(238, 238, 238, 0.589);
+  --panel_overlay:    rgba(238, 238, 238, 0.589);
 
-  --accent_colour: #e94f37;
-  --accent_opp: rgb(12, 76, 82);
-  --accent_opp_muted: #041b15;
-  --accent_opp_highlight: #1e6b7e;
+  --accent_colour:       #e94f37;
+  --accent_opp:          rgb(12, 76, 82);
+  --accent_opp_muted:    #041b15;
+  --accent_opp_highlight:#1e6b7e;
 
-  --box_shadow_colour: rgba(0, 0, 0, 0.15);
+  --box_shadow_colour:         rgba(0, 0, 0, 0.15);
   --box_shadow_colour_intense: rgba(0, 0, 0, 0.22);
 
   --default_text: rgb(0, 0, 0);
