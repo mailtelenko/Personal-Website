@@ -143,34 +143,36 @@ export default {
   --panel_hover:      rgb(235, 235, 235);
   --panel_embed:      rgb(207, 207, 207);
   --panel_dark_embed: rgb(145, 145, 145);
-  --panel_overlay:    rgba(238, 238, 238, 0.589);
+  --panel_overlay:    rgba(238, 238, 238, 1.0);
+
+  --timeline_colour:  rgba(80, 80, 80, 1);
 
   --accent_colour:       #e94f37;
   --accent_opp:          rgb(12, 76, 82);
   --accent_opp_muted:    #041b15;
   --accent_opp_highlight:#1e6b7e;
 
-  --box_shadow_colour:         rgba(0, 0, 0, 0.15);
+  --box_shadow_colour:         rgba(0, 0, 0, 0.10);
   --box_shadow_colour_intense: rgba(0, 0, 0, 0.22);
 
   --default_text: rgb(0, 0, 0);
 }
 
 [data-theme="dark"] {
-  --background-colour: rgb(41, 41, 43);
+  --background-colour: rgb(25, 25, 25);
 
-  --panel_colour: rgb(59, 59, 59);
-  --panel_hover: rgb(90, 90, 90);
-  --panel_embed: rgb(216, 216, 216);
-  --panel_overlay: rgba(56, 55, 55, 0.726);
+  --panel_colour:  rgb(40, 40, 40);
+  --panel_hover:   rgb(90, 90, 90);
+  --panel_embed:   rgb(216, 216, 216);
+  --panel_overlay: rgba(60, 60, 60, 1.0);
 
-  --box_shadow_colour: rgba(24, 19, 19, 0.4);
+  --box_shadow_colour:         rgba(0, 0, 0, 0.3);
   --box_shadow_colour_intense: rgba(0, 0, 0, 0.653);
 
-  --accent_colour: #e94f37;
-  --accent_opp: rgb(12, 76, 82);
-  --accent_opp_muted: #041b15;
-  --accent_opp_highlight: #1d7874;
+  --accent_colour:       #e94f37;
+  --accent_opp:          rgb(12, 76, 82);
+  --accent_opp_muted:    #041b15;
+  --accent_opp_highlight:#1d7874;
 
   --default_text: rgb(245, 241, 241);
 }

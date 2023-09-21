@@ -1,8 +1,11 @@
 <template>
-  <div id="container">
-    <div id="cards_container">
-      <Card v-for="point in element_data.points" v-bind:key="point.title" :element_data="point"></Card>
-    </div>
+  <div>
+    <CardContainer 
+      v-for         = "point in element_data.points"
+      v-bind:key    = "point.title"
+      :element_data = "point"
+    ></CardContainer>
+    
     <!-- Next/previous card buttons -->
     <div v-if="element_data.points.length > 1">
       <button v-on:click="scroll_list(false)" id="previous_card">
@@ -16,21 +19,6 @@
 </template>
 
 <style scoped>
-#container {
-  position: relative;
-}
-
-#cards_container {
-  position: relative;
-
-  overflow-x: hidden;
-
-  white-space: nowrap;
-}
-
-#cards_container * {
-  display: inline-block;
-}
 
 button {
   position: absolute;
@@ -54,7 +42,7 @@ button {
 </style>
 
 <script>
-import Card from "./Card.vue";
+import CardContainer from "./CardContainer.vue"
 
 var current_card = 0;
 
@@ -66,7 +54,7 @@ export default {
   },
 
   components: {
-    Card
+    CardContainer
   },
 
   data: function() {

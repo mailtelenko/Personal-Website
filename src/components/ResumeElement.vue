@@ -30,7 +30,7 @@
         </p>
 
         <div
-          id           = "expand_points_cont"
+          id           = "content_container"
           v-on:click   = "click_point"
           v-bind:class = "{'expand' : expand_element}"
         >
@@ -99,8 +99,8 @@
   display:  block;
 
   /* Configure the interior as a grid */
-  grid-template-columns: 45% 55%;
-  grid-template-rows:    auto;
+  /* grid-template-columns: 45% 55%; */
+  /* grid-template-rows:    auto; */
 
   /* Configure the background */
   background-size:     cover;
@@ -147,6 +147,9 @@
 }
 
 
+/* 
+  Title styling
+*/
 .resume_element h3 {
   height: auto;
   margin: 0px;
@@ -207,13 +210,6 @@
   max-height: 800px !important;
 
   box-shadow: -3px 8px 20px var(--box_shadow_colour_intense);
-}
-
-#expand_points_cont {
-  width: 100%;
-  height: auto;
-
-  padding-top: 60px;
 }
 
 .below_fold {

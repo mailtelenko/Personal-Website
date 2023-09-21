@@ -36,31 +36,55 @@ export let data = {
           points: [
             {
               title: "Course Highlights 2020",
-              content: "<span class='bold_text'>Principles of Programming</span><ul class='expand_list'>\
-                        <li>Learned C and Java by designing and implementing programs.</li>\
-                        <li>Studied the structure and uses of low and high level languages.</li>\
-                        </ul><hr/><span class='bold_text'>Logic Design</span><ul class='expand_list'>\
-                        <li>Analysed the operation of logic gates and combinational, and sequential circuits.</li>\
-                        <li>Designed and tested logic using Verilog HDL.</li></ul>"
+              content: [
+                {
+                  title: "Principles of Programming",
+                  bullets: [
+                    "Learned C and Java by designing and implementing programs.",
+                    "Studied the structure and uses of low and high level languages."
+                  ]
+                },
+                {
+                  title: "Logic Design",
+                  bullets: [
+                    "Analysed the operation of logic gates and combinational, and sequential circuits.",
+                    "Designed and tested logic using Verilog HDL."
+                  ]
+                }
+              ]
             },
             {
-              title: "Club - McMaster Formula Electric",
-              content:
-                  "<p><a href='https://macformularacing.com/' target='_blank'>MAC Formula Electric</a>\
-                    is a student run team working on designing and fabricating an electric 1/4 scale formula style racecar.<br/>\
-                    <br/>I was a member of the software and controls team which works on implementing the various digital systems across \
-                    the vehicle using technologies such as CAN.</p><hr/><span class='bold_text'>Projects</span><ul class='expand_list'>\
-                    <li>Developing a customizable dashboard interface using interpreted CAN bus information.</li></ul>"
+              title: "Clubs",
+              content: [
+                {
+                  title: "McMaster Formula Electric",
+                  bullets: [ 
+                    "A student run team working on designing and fabricating an electric 1/4 scale formula style racecar. \
+                     I was a member of the software and controls team which works on implementing the various digital systems across \
+                     the vehicle using technologies such as CAN.",
+                    "Developing a customizable dashboard interface using interpreted CAN bus information."
+                  ]
+                }
+              ]
             },
             {
               title: "Course Highlights 2019",
-              content:
-                  "<span class='bold_text'>Engineering Computation</span>\
-                  <ul class='expand_list'><li>Analysed and implemented algorithms in Python</li>\
-                  <li>Studied best practices and methods of development</li></ul>\
-                  <hr/><span class='bold_text'>Engineering Profession & Practice</span><ul class='expand_list'>\
-                  <li>Developed strong interpersonal and team building skills.</li>\
-                  <li>Studied the ethics and expectations of working in a professional setting.</li></ul>"
+              content: [
+                {
+                  title: "Engineering Computation",
+                  bullets: [ 
+                    "Analysed and implemented algorithms in Python",
+                    "Studied best practices and methods of development"
+                  ]
+                }, 
+                {
+                  title: "Engineering Profession & Practice",
+                  bullets: [
+                    "Developed strong interpersonal and team building skills.",
+                    "Studied the ethics and expectations of working in a professional setting."
+                  ]
+                }
+              ]
             }
           ],
           location: "Hamilton, ON",
@@ -74,16 +98,24 @@ export let data = {
           points: [
             {
               title: "Course Highlights",
-              content: "<span class='bold_text'>Computer Engineering Technology</span>\
-                        <ul class='expand_list'>\
-                        <li>Studied and applied CISCO IT training in small scale simulations.</li>\
-                        <li>Developed low level programs for 8085 microprocessors.</li>\
-                        </ul>\
-                        <hr/>\
-                        <span class='bold_text'>Introduction to Computer Science</span>\
-                        <ul class='expand_list'>\
-                        <li>Worked in teams to develop full stack software in Java.</li>\
-                        <li>Studied computer science theory at the AP level.</li></ul>"
+              content: [
+                {
+                  emoji: "🖥️",
+                  title: "Computer Engineering Technology",
+                  bullets: [
+                    "Studied and applied CISCO IT training in small scale simulations.",
+                    "Developed low level programs for 8085 microprocessors."
+                  ]
+                },
+                {
+                  emoji: "💽",
+                  title: "Introduction to Computer Science",
+                  bullets: [
+                    "Worked in teams to develop full stack software in Java.",
+                    "Studied computer science theory at the AP level."
+                  ]
+                }
+              ]
             }
           ],
           image:  "wlmac.jpg",
@@ -108,9 +140,15 @@ export let data = {
             points: [
               {
                 title:   "Responsibilities",
-                content: "<ul class='expand_list'><li>Provide remote support for users in a variety of hardware and software environments.</li>\
-                          <li>Work with members of the department to solve and thoroughly document issues as they arise.</li>\
-                          <li>Perform maintenance on user and backend systems.</li></ul>"
+                content: [
+                  {
+                    bullets: [
+                      "Provide remote support for users in a variety of hardware and software environments.",
+                      "Work with members of the department to solve and thoroughly document issues as they arise.",
+                      "Perform maintenance on user and backend systems."
+                    ]
+                  }
+                ]
               }
             ],
             image:    "mcmaster2.jpg",

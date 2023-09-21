@@ -12,7 +12,7 @@
 .timeline {
   position: absolute;
 
-  background-color: var(--box_shadow_colour);
+  background-color: var(--timeline_colour);
   width:            4px;
 
   /* TODO: If expanded, need to reduce the amount of height again */
