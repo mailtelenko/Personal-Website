@@ -22,7 +22,7 @@
         <ul class="panel dropdown" v-show="show_dropdown">
           <li
             v-for="page in resume_elements"
-            :key="page"
+            :key="page.name"
             v-show="resume_section != page.name"
             :value="page.name"
             @click="update_page(page.name)"
@@ -44,10 +44,11 @@
       </div>
 
       <ResumeSection
-        v-if="resume_section != ''"
-        :resume_elements="resume_elements[resume_section].elements"
-        :display_props="resume_elements[resume_section].display_props"
-        title="Test"
+        v-if             = "resume_section != ''"
+        :resume_elements = "resume_elements[resume_section].elements"
+        :display_props   = "resume_elements[resume_section].display_props"
+        
+        title = "Test"
       />
 
       <font-awesome-icon

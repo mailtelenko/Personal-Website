@@ -16,7 +16,7 @@
         name = "list"
       >
         <Card 
-          v-bind:key    = "topic.title" 
+          v-bind:key    = "`${topic.title}_${title}`" 
           v-for         = "topic in topics"
 
           :title   = "topic.title"
@@ -109,7 +109,9 @@ export default {
     Card
   },
 
-  data: function() {},
+  data: function() {
+    return {};
+  },
 
   methods: {}
 };

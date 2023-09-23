@@ -13,7 +13,7 @@
       :class="{'half': display_props.size == 'half', 'slim': display_props.size == 'slim'}"
       
       v-for          = "element in resume_elements"
-      v-bind:key     = "element.name"
+      v-bind:key     = "`${element.name}_${element.description}`"
       :display_props = "display_props"
       :element_data  = "element"
     ></ResumeElement>
