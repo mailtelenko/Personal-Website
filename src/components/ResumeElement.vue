@@ -93,7 +93,7 @@
     in order for the opening animation to occur smoothly
   */
   height:     auto;
-  max-height: 130px;
+  max-height: 140px;
 
   position: relative;
   display:  block;
@@ -112,7 +112,7 @@
 
   border-radius:       8px;
 
-  transition-duration: 0.6s;
+  transition-duration: 0.8s;
 }
 
 .expand > div {
@@ -127,8 +127,8 @@
   Header of the element. Visible before and after the element is
   expanded.
 */
-.resume_element .resume_header {
-  height: 130px; /* TODO: Change to var? */
+.resume_header {
+  height: 150px; /* TODO: Change to var? */
   width:  100%;
 
   display:  inline-block;
@@ -143,7 +143,17 @@
   padding-top:  15px;
   padding-left: 20px;
 
-  background-color:green;
+  background-color: var(--box_shadow_colour);
+
+  transition-duration: .7s;
+}
+
+.expand .resume_header {
+  height: 160px;
+
+  padding-top: 25px;
+  padding-left: 35px;
+
 }
 
 
@@ -201,7 +211,7 @@
 }
 
 .resume_element > div:hover {
-  max-height: 140px;
+  max-height: 150px;
 
   box-shadow: -3px 8px 20px var(--box_shadow_colour_intense);
 }

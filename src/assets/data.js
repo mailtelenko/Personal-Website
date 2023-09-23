@@ -17,7 +17,7 @@ export let data = {
   show_dropdown: false,
 
 
-  resume_section: "education",
+  resume_section: "",
   resume_elements: {
     education: {
       name: "education",
@@ -136,7 +136,8 @@ export let data = {
           {
             name:        "McMaster University",
             dates:       "2020 - 2022",
-            description: "<b>Web and Desktop Applications Assistant</b><br/>Office of the Registrar",
+            location:    "Hamilton, ON",
+            description: "Web and Desktop Applications Assistant | Office of the Registrar",
             points: [
               {
                 title:   "Responsibilities",
@@ -152,36 +153,47 @@ export let data = {
               }
             ],
             image:    "mcmaster2.jpg",
-            location: "Hamilton, ON",
             accent:   "rgba(202 , 111, 0, .2)"
           },
           {
             name:        "McMaster University",
             dates:       "2020",
-            description: "<b>Information Technology Assistant</b><br/>Housing and Conference Services",
+            location:    "Hamilton, ON",
+            description: "Information Technology Assistant | Housing and Conference Services",
             points: [
               {
                 title: "Responsibilities",
-                content: "<ul class='expand_list'><li>Provided individual and group support for users in a variety of production environments.</li>\
-                          <li>Troubleshooted computer systems using a priority ticketing system.</li>\
-                          <li>Performed maintenance on customer systems including disk imaging, virus removal, and hardware upgrades.</ul>"
+                content: [
+                  {
+                    bullets: [
+                      "Provided individual and group support for users in a variety of production environments.",
+                      "Troubleshooted computer systems using a priority ticketing system.",
+                      "Performed maintenance on customer systems including disk imaging, virus removal, and hardware upgrades."
+                    ]
+                  }
+                ]
               }
             ],
             image:    "mcmaster.jpg",
-            location: "Hamilton, ON",
             accent:   "rgba(202 , 111, 0, .2)"
           },
           {
             name:        "Camp Kawartha",
             dates:       "2018 - 2020",
-            description: "<b>Head of Ropes & Lifeguard</b>",
+            description: "Head of Ropes & Lifeguard",
             location:    "Douro-Dummer, ON",
             image:       "ck.JPG",
             points: [
               {
                 title: "Responsibilities",
-                content: "<ul class='expand_list'><li>Planned, communicated, and led group activities.</li>\
-                          <li>Worked in a team to ensure the safe operation of the waterfront and ropes areas.</li></ul>"
+                content: [
+                  {
+                    bullets: [ 
+                      "Planned, communicated, and led group activities.",
+                      "Worked in a team to ensure the safe operation of the waterfront and ropes areas."
+                    ]
+                  }
+                ]
               }
             ],
             accent: "rgba(0,0,0,0)"

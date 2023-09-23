@@ -1,56 +1,108 @@
 <template>
-  <div>
+  <div id="container">
     <CardContainer 
-      v-for         = "point in element_data.points"
-      v-bind:key    = "point.title"
-      :element_data = "point"
+      id = "card_container"
+
+      :title  = "card_title"
+      :topics = "card_topics"
     ></CardContainer>
     
-    <!-- Next/previous card buttons -->
-    <div v-if="element_data.points.length > 1">
-      <button v-on:click="scroll_list(false)" id="previous_card">
-        <font-awesome-icon class="button_icon" icon="chevron-left" />
-      </button>
-      <button v-on:click="scroll_list(true)" id="next_card">
-        <font-awesome-icon class="button_icon" icon="chevron-right" />
-      </button>
-    </div>
+    <!-- 
+      Section selection
+     -->
+    <ul
+      v-if = "this.element_data.points.length > 1"
+    >
+      <li
+       v-for        = "(point, index) in this.element_data.points" 
+       v-bind:key   = "point.title"
+       @click       = "update_card(index)"
+       >
+        {{ point.title }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
 
-button {
+#container {
+  position: relative;
+
+  display: flex;
+}
+
+#card_container {
+  width: 60%;
+}
+
+
+/* 
+  Card section selection options
+*/
+ul {
   position: absolute;
+  
+  width: 25%;
+  right: 20px;
+  
+  padding: 0px;
+  margin:  0px;
 
-  top: calc(50% - 25px);
-
-  padding-left: 22px;
-
-  width: 50px;
-  height: 50px;
+  /* 
+    Matches the margin applied to the 
+    card section title.
+  */
+  top: calc(70px + 1.5rem);
 }
 
-#previous_card {
-  left: -20px;
-  padding-left: 20px;
+li {
+  background-color: var(--panel_overlay);
+  width: fit-content;
+
+  /* Configure the padding without affecting the width/height */
+  -moz-box-sizing:    border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing:         border-box;
+
+  padding:       10px;
+  margin-bottom: 10px;
+
+  /* 
+    Align to the R hand side of parent
+   */
+  margin-left: auto;
+  margin-right: 0px;
+
+  border-radius: 10px;
+
+  list-style: none;
+
+  box-shadow: 0px 5px 10px var(--box_shadow_colour);
+
+  transition: all .5s ease;
+
 }
 
-#next_card {
-  right: -20px;
+li:hover {
+  transform: translateX(-10px);
+ 
+  box-shadow: 0px 5px 10px var(--box_shadow_colour_intense);
+ 
+  cursor: pointer;
+  
+  transition: all .5s ease;
 }
+
 </style>
 
 <script>
 import CardContainer from "./CardContainer.vue"
 
-var current_card = 0;
-
 export default {
   props: {
-    title: String,
-    element_data: Object,
-    display_props: Object
+    title:         String,
+    element_data:  Object,
   },
 
   components: {
@@ -59,22 +111,15 @@ export default {
 
   data: function() {
     return {
-      expand_element: true
+      card_title:  this.element_data.points[0].title, 
+      card_topics: this.element_data.points[0].content
     };
   },
 
   methods: {
-    scroll_list(increment) {
-      if (increment && current_card < this.$children.length - 1) current_card++;
-      else if (!increment && current_card > 0) current_card--;
-      else return;
-
-      var el = this.$children[current_card].$el.firstChild;
-      el.scrollIntoView({
-        block: "center",
-        inline: "center",
-        behavior: "smooth"
-      });
+    update_card(index) {
+      this.card_title  = this.element_data.points[index].title;
+      this.card_topics = this.element_data.points[index].content;
     }
   }
 };

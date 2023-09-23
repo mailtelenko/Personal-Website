@@ -2,22 +2,21 @@
   <div class="card">
     <div 
       id   = "emoji"
-      v-if = "check_defined(element_data.emoji)"
+      v-if = "check_defined(emoji)"
     >
-      {{ element_data.emoji }}
+      {{ emoji }}
     </div>
-    
     <div>
+
       <div 
-        v-if = "check_defined(element_data.title)"
+        v-if = "check_defined(title)"
         id   = "header"
       >
-        <h4>{{ element_data.title }}</h4>
+        <h4 :key="title">{{ title }}</h4>
       </div>
-
       <ul id="bullets">
         <li 
-          v-for      = "bullet in element_data.bullets"
+          v-for      = "bullet in bullets"
           v-bind:key = "bullet"
         >
           {{ bullet }}
@@ -28,6 +27,7 @@
 </template>
 
 <style scoped>
+
 .card {
   background-color: var(--panel_overlay);
 
@@ -35,7 +35,9 @@
 
   white-space: normal;
 
-  width: 100%;
+  /* width: 600px; */
+
+  position: relative;
 
   display:        flex;
   flex-direction: row;
@@ -103,8 +105,8 @@ li:last-child {
 export default {
   props: {
     title:         String,
-    element_data:  Object,
-    display_props: Object
+    emoji:         String,
+    bullets:       Array,
   },
 
   data: function() {
