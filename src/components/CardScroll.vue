@@ -91,7 +91,10 @@ li:hover {
  
   cursor: pointer;
   
-  transition: all .5s ease;
+}
+
+li:active {
+  transform: scale(.98);
 }
 
 </style>

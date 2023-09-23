@@ -145,6 +145,7 @@ export default {
   --panel_embed:      rgb(207, 207, 207);
   --panel_dark_embed: rgb(145, 145, 145);
   --panel_overlay:    rgba(238, 238, 238, 1.0);
+  --panel_header:     rgba(0, 0, 0, 0.055);
 
   --timeline_colour:  rgba(80, 80, 80, 1);
 
@@ -166,6 +167,8 @@ export default {
   --panel_hover:   rgb(90, 90, 90);
   --panel_embed:   rgb(216, 216, 216);
   --panel_overlay: rgba(60, 60, 60, 1.0);
+  --panel_header:  rgba(0, 0, 0, 0.144);
+
 
   --box_shadow_colour:         rgba(0, 0, 0, 0.3);
   --box_shadow_colour_intense: rgba(0, 0, 0, 0.653);

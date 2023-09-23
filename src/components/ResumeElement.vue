@@ -143,7 +143,7 @@
   padding-top:  15px;
   padding-left: 20px;
 
-  background-color: var(--box_shadow_colour);
+  background-color: var(--panel_header);
 
   transition-duration: .7s;
 }
@@ -153,6 +153,9 @@
 
   padding-top: 25px;
   padding-left: 35px;
+
+  border-bottom-left-radius:  10px;
+  border-bottom-right-radius: 10px;
 
 }
 
