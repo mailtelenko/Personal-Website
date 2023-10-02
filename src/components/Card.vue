@@ -35,7 +35,8 @@
 
   white-space: normal;
 
-  /* width: 600px; */
+  width:     750px;
+  max-width: 100%;
 
   position: relative;
 

@@ -74,7 +74,7 @@
   position: relative;
 
   height: 450px;
-  width: 100%;
+  width:  100%;
 
   /* Configure the padding without affecting the width/height */
   -moz-box-sizing:    border-box; 
@@ -88,9 +88,10 @@
   Title
 */
 .card_container h4 {
-  font-size: 1.5rem;
-  line-height: 1.5rem;;
-  margin-top: 40px;
+  font-size:   1.5rem;
+  line-height: 1.5rem;
+  
+  margin-top:    40px;
   margin-bottom: 30px;
 }
 </style>
