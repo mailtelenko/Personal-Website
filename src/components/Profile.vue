@@ -1,23 +1,25 @@
 <template>
   <div class="container">
-    <div class="profile">
-      <img class="profile_picture" alt="Profile picture" src="@/assets/Liam_Telenko.jpg" />
+    <div id="profile_container">
+      <img id ="profile_picture"
+          alt="Profile picture"
+          src="@/assets/Liam_Telenko.jpg"
+      />
     </div>
 
-    <div class="bio">
+    <div id="info">
       <h1 class="title">
-        Liam
-        <br />Telenko
+        Liam Telenko
       </h1>
 
-      <div class="info_container">
-        <p>{{ bio }}</p>
-      </div>
+      <p id="bio">{{ bio }}</p>
     </div>
 
-    <div class="call_to_action">
-      <button v-on:click="$emit('contact_button', 'show_contact')">Contact Me</button>
-    </div>
+    <button 
+      v-on:click="$emit('contact_button', 'show_contact')"
+    >
+      Contact Me
+    </button>
   </div>
 </template>
 
@@ -44,10 +46,10 @@ export default {
   Container element
 */
 .container {
-  width: 100%;
+  width:  100%;
   height: 100vh;
   margin: 0px;
-
+  
   position: relative;
 
   color: var(--default_text);
@@ -58,63 +60,75 @@ export default {
 /*
   Profile photo section
 */
-.profile {
-  height: 40vh;
+#profile_container {
+  height:     40vh;
+  
+  margin-top:    40px;
 
-  position: relative;
+  /*
+    Center the child image
+    (horizontal & vertical)
+  */
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+
 }
 
-.profile_picture {
-  width: 55%;
-
-  position: absolute;
-  bottom: 4vh;
-  left: calc((100% - 55%) / 2);
+#profile_picture {
+  width:     55%;
+  max-width: 40vh;
 
   border-radius: 100%;
 
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 
-/*
-  Bio section
+/* 
+  Name text (header)
 */
-
-.bio {
-  height: 50vh;
-}
-
-.bio div,
-h1 {
-  padding: 0px 15%;
-}
-
 .title {
-  font-size: 2.5rem;
-  line-height: 3rem;
+  font-size:   2.5rem;
 
-  margin: 2rem 0px 0px 0px;
+  width: 100%;
+
+  text-align: center;
+
+  margin-top:    20px;
+  margin-bottom: 20px;
 }
 
-.info_container {
-  height: calc(58vh - 8.5rem);
+/*
+  Bio text
+*/
+#bio {
+  height: 35vh;
 
-  line-height: calc(58vh - 12.5rem);
+  font-size: 1.1rem;
+
+  /* Configure the padding without affecting the width/height */
+  -moz-box-sizing:    border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing:         border-box;
+
+  padding-left:  10%;
+  padding-right: 10%;
+
+  /* Vertically & horizontally center */
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+
 }
 
-p {
-  margin: 0px;
-
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-}
-
+/*
+  Contact button
+*/
 button {
   position: absolute;
 
-  bottom: 25px;
-  left: calc((100% - 155px) / 2);
+  bottom: 60px;
+  left:   calc((100% - 155px) / 2);
 
   width: 150px;
 }

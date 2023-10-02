@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Profile v-on:contact_button="toggle_contact" id="profile_container" :bio="bio" />
+    <Profile 
+      id                  = "profile"
+      v-on:contact_button = "toggle_contact"
+      :bio                = "bio"
+    />
 
     <div :class="{'blur': show_contact}" id="interactive_resume">
       <h2>Get to know my</h2>
@@ -36,8 +40,15 @@
       <div v-show="resume_section == ''" id="starting_page">
         <font-awesome-icon id="point_icon" icon="hand-point-up" />
         <h3>Select an item from the list above to get started or download a copy of my resume below.</h3>
-        <form method="get" action="Liam Telenko Resume.pdf">
-          <button id="download_button" type='submit'>
+        
+        <form 
+          method = "get" 
+          action = "Liam Telenko Resume.pdf"
+        >
+          <button 
+            id   = "download_button" 
+            type = 'submit'
+          >
             <font-awesome-icon icon="file-alt" />Download Resume
           </button>
         </form>
@@ -52,17 +63,19 @@
       />
 
       <font-awesome-icon
-        v-on:click="toggle_dark"
-        id="dark_toggle"
-        class="panel panel_hover"
-        :icon="['fas', 'moon']"
+        id         = "theme_toggle"
+        v-on:click = "toggle_theme"
+        class      = "panel panel_hover"
+        :icon      = "['fas', 'moon']"
       />
     </div>
 
     <transition name="slide-up-fade">
       <div v-show="show_contact">
         <div id="mobile_blur"></div>
-        <Contact @close_contact="this.force_hide_cont" v-click-outside="hide_contact" />
+        <Contact 
+          v-click-outside = "hide_contact"
+        />
       </div>
     </transition>
   </div>
@@ -88,17 +101,20 @@ export default {
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
-      this.toggle_dark();
+      this.dark_mode = true;
+      this.set_theme();
     }
   },
 
   methods: {
-    toggle_dark() {
-      if (!this.dark_mode)
-        document.documentElement.setAttribute("data-theme", "dark");
-      else document.documentElement.setAttribute("data-theme", "light");
+    set_theme() {
+      if (this.dark_mode) document.documentElement.setAttribute("data-theme", "dark");
+      else                document.documentElement.setAttribute("data-theme", "light");
+    },
 
+    toggle_theme() {
       this.dark_mode = !this.dark_mode;
+      this.set_theme();
     },
 
     hide_dropdown() {
@@ -110,7 +126,7 @@ export default {
     },
 
     hide_contact(e) {
-      if (e.explicitOriginalTarget.innerHTML != "Contact Me")
+      if (!e.explicitOriginalTarget.innerHTML.includes("Contact Me"))
         this.show_contact = false;
     },
 
@@ -120,11 +136,6 @@ export default {
 
     toggle_contact() {
       this.show_contact = !this.show_contact;
-      if (this.show_contact) {
-        this.contact_component = "";
-      } else {
-        this.contact_component = "Contact";
-      }
     }
   },
 
@@ -288,7 +299,7 @@ button:active {
   transition-duration: 0.3s;
 }
 
-#profile_container {
+#profile {
   width: 25vw;
 
   position: absolute;
@@ -418,7 +429,7 @@ button:active {
   cursor: pointer;
 }
 
-#dark_toggle {
+#theme_toggle {
   position: absolute;
 
   width: 20px;
@@ -432,11 +443,11 @@ button:active {
   right: 30px;
 }
 
-#dark_toggle:hover {
+#theme_toggle:hover {
   transform: rotate(-18deg);
 }
 
-#dark_toggle:active {
+#theme_toggle:active {
   transform: scale(0.9) rotate(-30deg);
 }
 
