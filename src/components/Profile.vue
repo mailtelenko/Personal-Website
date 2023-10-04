@@ -15,11 +15,13 @@
       <p id="bio">{{ bio }}</p>
     </div>
 
-    <button 
-      v-on:click="$emit('contact_button', 'show_contact')"
-    >
-      Contact Me
-    </button>
+    <div id="button_container">
+      <button 
+        v-on:click="$emit('contact_button', 'show_contact')"
+      >
+        Contact Me
+      </button>
+    </div>
   </div>
 </template>
 
@@ -47,6 +49,9 @@ export default {
 */
 #profile {
   height: 100vh;
+
+  display:   flex;
+  flex-flow: column;
 
   position: relative;
 
@@ -107,37 +112,39 @@ export default {
   Bio text
 */
 #bio {
-  height: 35vh;
+  max-height: 30vh;
+  width:  80%;
+  
+  overflow-y: scroll;
 
-  font-size: 1.1rem;
+  margin: 5vh 10%;
+
+  font-size:   1.2rem;
+  line-height: 1.8rem;
+
+  background-color: var(--panel_overlay);
+  border-radius: 10px;
 
   /* Configure the padding without affecting the width/height */
   -moz-box-sizing:    border-box; 
   -webkit-box-sizing: border-box; 
   box-sizing:         border-box;
 
-  padding-left:  10%;
-  padding-right: 10%;
-
-  margin: 0;
-
-  /* Vertically & horizontally center */
-  display:         flex;
-  justify-content: center;
-  align-items:     center;
-
+  padding: 10%;  
 }
 
 /*
   Contact button
 */
-button {
-  position: absolute;
+#button_container {
+  width: 100%;
 
-  bottom: calc((18vh - var(--button_height))/2);
-  left:   calc((100% - 155px) / 2);
-
-  width: auto;
+  /* Fill the rest of the vertical space */
+  flex:  1 1 auto;
+  
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
 }
 
 @media only screen and (max-width: 1100px) {

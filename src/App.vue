@@ -308,7 +308,7 @@ button:active {
 }
 
 #profile {
-  width: 25vw;
+  width: 30vw;
 }
 
 #interactive_resume {
