@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div id="profile_container">
+  <div>
+    <div id="profile_pic_container">
       <img id ="profile_picture"
           alt="Profile picture"
           src="@/assets/Liam_Telenko.jpg"
@@ -45,14 +45,12 @@ export default {
 /*
   Container element
 */
-.container {
-  width:  100%;
+#profile {
   height: 100vh;
-  margin: 0px;
-  
+
   position: relative;
 
-  color: var(--default_text);
+  margin: 0px;
 
   background-color: var(--panel_colour);
 }
@@ -60,10 +58,8 @@ export default {
 /*
   Profile photo section
 */
-#profile_container {
-  height:     40vh;
-  
-  margin-top:    40px;
+#profile_pic_container {
+  height: 40vh;
 
   /*
     Center the child image
@@ -77,25 +73,34 @@ export default {
 
 #profile_picture {
   width:     55%;
-  max-width: 40vh;
+  min-width: 40px;
+  max-width: 30vh;
 
   border-radius: 100%;
 
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
 }
 
+/*
+  Info section 
+*/
+#info {
+  color: var(--default_text);
+}
+
 /* 
   Name text (header)
 */
 .title {
+  height: 7vh;
+
   font-size:   2.5rem;
+  line-height: 7vh;
 
   width: 100%;
+  margin: 0px;
 
   text-align: center;
-
-  margin-top:    20px;
-  margin-bottom: 20px;
 }
 
 /*
@@ -114,6 +119,8 @@ export default {
   padding-left:  10%;
   padding-right: 10%;
 
+  margin: 0;
+
   /* Vertically & horizontally center */
   display:         flex;
   justify-content: center;
@@ -127,25 +134,15 @@ export default {
 button {
   position: absolute;
 
-  bottom: 60px;
+  bottom: calc((18vh - var(--button_height))/2);
   left:   calc((100% - 155px) / 2);
 
-  width: 150px;
+  width: auto;
 }
 
-@media (max-width: 800px) and (min-width: 600px) {
-  .profile_picture {
-    width: 40%;
-    left: calc((100% - 40%) / 2);
-  }
-
-  .bio div,
-  h1 {
-    padding: 0px 25%;
-  }
-
-  button {
-    bottom: 50px;
+@media only screen and (max-width: 1100px) {
+  #profile {
+    width: 100vw;
   }
 }
 </style>

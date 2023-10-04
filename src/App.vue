@@ -149,6 +149,8 @@ export default {
 <style>
 /* Variable declaration */
 :root {
+  --button_height: 60px;
+  
   --background-colour:rgb(228, 228, 228);
 
   --panel_colour:     rgb(247, 247, 247);
@@ -222,7 +224,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   height: 100vh;
-  width: 100vw;
+  width:  100vw;
+
+  display:        flex;
+  flex-direction: row;
 }
 
 .bold_text {
@@ -234,10 +239,13 @@ body {
 */
 
 button {
-  border: none;
+  font-size:  1.1rem;
+
+  border:        none;
   border-radius: 1000px;
 
-  padding: 15px 30px;
+  padding: 0px 40px;
+  height:  var(--button_height);
 
   color: white;
 
@@ -301,26 +309,17 @@ button:active {
 
 #profile {
   width: 25vw;
-
-  position: absolute;
-  left: 0px;
-  top: 0px;
 }
 
 #interactive_resume {
   margin: 0px;
 
-  width: 75vw;
   height: 100vh;
+  width:  100%;
+
+  position: relative;
 
   color: var(--default_text);
-
-  overflow: auto;
-  overflow-x: hidden;
-
-  position: absolute;
-  top: 0px;
-  right: 0px;
 
   transition-duration: 0.2s;
 }
@@ -525,20 +524,7 @@ hr {
   Mobile
 */
 @media only screen and (max-width: 1100px) {
-  #profile_container {
-    width: 30vw;
-  }
-
-  #interactive_resume {
-    width: 70vw;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  #profile_container {
-    width: 100vw;
-  }
-
+  
   #interactive_resume {
     display: none;
   }
