@@ -11,10 +11,10 @@
       Section selection
      -->
     <ul
-      v-if = "this.element_data.points.length > 1"
+      v-if = "this.points.length > 1"
     >
       <li
-       v-for        = "(point, index) in this.element_data.points" 
+       v-for        = "(point, index) in this.points" 
        v-bind:key   = "point.title"
        @click       = "update_card(index)"
        >
@@ -104,8 +104,8 @@ import CardContainer from "./CardContainer.vue"
 
 export default {
   props: {
-    title:         String,
-    element_data:  Object,
+    title:  String,
+    points: Array,
   },
 
   components: {
@@ -114,15 +114,15 @@ export default {
 
   data: function() {
     return {
-      card_title:  this.element_data.points[0].title, 
-      card_topics: this.element_data.points[0].content
+      card_title:  this.points[0].title, 
+      card_topics: this.points[0].content
     };
   },
 
   methods: {
     update_card(index) {
-      this.card_title  = this.element_data.points[index].title;
-      this.card_topics = this.element_data.points[index].content;
+      this.card_title  = this.points[index].title;
+      this.card_topics = this.points[index].content;
     }
   }
 };

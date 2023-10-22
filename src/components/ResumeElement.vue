@@ -5,15 +5,15 @@
       v-on:click      = "toggle_element"
       v-click-outside = "hide"
       :class          = "{'expand' : isActive}"
-      v-bind:style    = "{'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + element_data.accent + '), url(/images/' + element_data.image + ')'}"
+      v-bind:style = "{'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + bg_accent + '), url(' + resolved_bg + ')'}"
       id              = "resume_element_container"   
     >
       <div class = "resume_header">
-        <h3 id = "name">{{ element_data.name }}</h3>
-        <p  id = "year">{{ element_data.dates }}</p>
+        <h3 id = "name">{{ name }}</h3>
+        <p  id = "year">{{ dates }}</p>
 
         <div id = "intro">
-          <p v-html="element_data.description"></p>
+          <p v-html="description"></p>
         </div>
       </div>
 
@@ -22,14 +22,14 @@
         id     = "content"
       >
         <p 
-          v-show = "element_data.location != null" 
+          v-show = "location != null" 
           id     = "location"
         >
           <font-awesome-icon 
             id   = "icon"
             icon = "map-marker-alt" 
           />
-          {{ element_data.location }}
+          {{ location }}
         </p>
 
         <div
@@ -37,7 +37,7 @@
           v-on:click   = "click_point"
           v-bind:class = "{'expand' : isActive}"
         >
-          <CardScroll :element_data="element_data"></CardScroll>
+          <CardScroll :points="points"></CardScroll>
         </div>
       </div>
     </div>
@@ -221,7 +221,7 @@
 
 
 /*
-  Below the fold content
+  Below the fold contentelement
 */
 #content {
   max-height: 0px;
@@ -243,8 +243,15 @@ import CardScroll from "./CardScroll.vue";
 
 export default {
   props: {
-    title:         String,
-    element_data:  Object,
+    name:          String,
+    dates:         String,
+    description:   String,
+    location:      String,
+    bg_accent:     String,
+    bg_image:      String,
+
+    points:        Array,
+
     display_props: Object
   },
 
@@ -254,7 +261,8 @@ export default {
 
   data: function() {
     return {
-      isActive: true
+      isActive:    true,
+      resolved_bg: require('../assets/images/' + this.bg_image)
     };
   },
 

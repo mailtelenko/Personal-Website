@@ -182,7 +182,7 @@ export let data = {
             dates:       "2018 - 2020",
             description: "Head of Ropes & Lifeguard",
             location:    "Douro-Dummer, ON",
-            image:       "ck.JPG",
+            image:       "ck.jpg",
             points: [
               {
                 title: "Responsibilities",

@@ -327,6 +327,8 @@ button:active {
   height: 100vh;
   width:  100%;
 
+  overflow-y: scroll;
+
   position: relative;
 
   color: var(--default_text);

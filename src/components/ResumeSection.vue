@@ -15,7 +15,15 @@
       v-for          = "element in resume_elements"
       v-bind:key     = "`${element.name}_${element.description}`"
       :display_props = "display_props"
-      :element_data  = "element"
+      
+      :name        = "element.name"
+      :dates       = "element.dates"
+      :description = "element.description"
+      :location    = "element.location"
+      :bg_accent   = "element.accent"
+      :bg_image    = "element.image"
+  
+      :points = "element.points"
     ></ResumeElement>
   </div>
 </template>
