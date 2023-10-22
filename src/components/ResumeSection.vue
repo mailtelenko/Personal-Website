@@ -1,7 +1,7 @@
 <template>
   <div
-    class="resume_page"
-    :class="{'half': display_props.size == 'half', 'slim': display_props.size == 'slim', 'no_timeline' : !display_props.timeline}"
+    class  = "resume_page"
+    :class = "{'half': display_props.size == 'half', 'slim': display_props.size == 'slim', 'no_timeline' : !display_props.timeline}"
   >
     
     <Timeline
@@ -25,10 +25,20 @@
   
       :points = "element.points"
     ></ResumeElement>
-  </div>
+  </div>  
 </template>
 
 <style>
+
+.resume_page_container {
+  background-color: green;
+
+  min-height: 80%;
+  height: auto;
+  overflow: scroll;
+  position: relative;
+}
+
 /*
   Half size
 */
@@ -38,8 +48,6 @@
   padding-right:  30px;
 
   position: relative;
-
-  height: auto;
 }
 
 .resume_page.half,
@@ -112,8 +120,8 @@
 </style>
 
 <script>
-import ResumeElement from "./ResumeElement.vue";
-import Timeline      from "./Timeline.vue";
+import ResumeElement     from "./ResumeElement.vue";
+import Timeline          from "./Timeline.vue";
 
 export default {
   name: "ResumeSection",

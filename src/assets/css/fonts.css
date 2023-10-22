@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "BebasNeue";
+  src: url("../fonts/Cabin-Regular-TTF.ttf");
+}
+
+@font-face {
+  font-family: "CabinBold";
+  src: url("../fonts/Cabin-Bold-TTF.ttf");
+}
