@@ -145,9 +145,14 @@ export default {
 };
 </script>
 
-<!-- Global Styling !-->
+<!-- 
+  Global Styling
+!-->
+
+<!-- 
+  Variable Declaration
+-->
 <style>
-/* Variable declaration */
 :root {
   --button_height: 60px;
   
@@ -194,38 +199,40 @@ export default {
   --default_text: rgb(245, 241, 241);
 }
 
+/* 
+  Font declaration
+*/
 @font-face {
   font-family: "BebasNeue";
-  src: url("./assets/Cabin-Regular-TTF.ttf");
+  src: url("./assets/fonts/Cabin-Regular-TTF.ttf");
 }
 
 @font-face {
   font-family: "CabinBold";
-  src: url("./assets/Cabin-Bold-TTF.ttf");
+  src: url("./assets/fonts/Cabin-Bold-TTF.ttf");
 }
 
-body {
-  height: 100vh;
-  overflow: hidden;
+</style>
 
-  background-color: var(--background-colour);
-
-  margin: 0px;
-  padding: 0px;
-}
-
+<style>
+/* 
+  Configure the font globally
+*/
 * {
   font-family: "BebasNeue" !important;
 }
 
+body {
+  height:   100vh;
+  overflow: hidden;
+
+  background-color: var(--background-colour);
+
+  margin:  0px;
+  padding: 0px;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  height: 100vh;
-  width:  100vw;
-
   display:        flex;
   flex-direction: row;
 }
@@ -237,17 +244,19 @@ body {
 /*
   Components
 */
-
+/* 
+  Button
+*/
 button {
+  height:  var(--button_height);
+
+  color:    white;
   font-size:  1.1rem;
 
   border:        none;
   border-radius: 1000px;
 
   padding: 0px 40px;
-  height:  var(--button_height);
-
-  color: white;
 
   background-color: var(--accent_opp);
 
@@ -264,10 +273,11 @@ button:hover {
   background-color: var(--accent_opp_highlight);
 
   cursor: pointer;
-
-  transition-duration: 0.2s;
 }
 
+/* 
+  Remove the button outline when clicked
+*/
 button:focus {
   outline: 0;
 }
@@ -286,7 +296,7 @@ button:active {
 
 .panel {
   background-color: var(--panel_colour);
-  color: var(--default_text);
+  color:            var(--default_text);
 
   box-shadow: 0px 0px 10px var(--box_shadow_colour);
 
@@ -533,9 +543,9 @@ hr {
     position: absolute;
 
     left: 0px;
-    top: 0px;
+    top:  0px;
 
-    width: 100vw;
+    width:  100vw;
     height: 100vh;
 
     background-color: var(--box_shadow_colour);

@@ -3,7 +3,7 @@
     <div id="profile_pic_container">
       <img id ="profile_picture"
           alt="Profile picture"
-          src="@/assets/Liam_Telenko.jpg"
+          v-bind:src="require('../assets/images/profile.jpg')"
       />
     </div>
 
