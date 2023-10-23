@@ -456,5 +456,9 @@ body {
 
     background-color: var(--box_shadow_colour);
   }
+
+  #contact_popup {
+    width: 70vw;
+  }
 }
 </style>
