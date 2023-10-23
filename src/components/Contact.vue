@@ -93,7 +93,7 @@ export default {
 
   data() {
     return {
-      form_submitted: true,
+      form_submitted: false,
       form_error:     false,
       not_filled:     false,
 
