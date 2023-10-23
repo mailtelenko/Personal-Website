@@ -84,7 +84,9 @@
       <div v-show="show_contact">
         <div id="mobile_blur"></div>
         <Contact 
-          v-click-outside = "hide_contact"
+          id                 = "contact_popup"
+          v-click-outside    = "hide_contact"
+          v-on:close_contact = "hide_contact(true)"
         />
       </div>
     </transition>
@@ -133,17 +135,13 @@ export default {
       this.show_dropdown = false;
     },
 
-    force_hide_cont() {
-      this.show_contact = false;
+    update_page(value) {
+      this.resume_section = value;
     },
 
     hide_contact(e) {
-      if (!e.explicitOriginalTarget.innerHTML.includes("Contact Me"))
+      if (e == true || !e.explicitOriginalTarget.innerHTML.includes("Contact Me"))
         this.show_contact = false;
-    },
-
-    update_page(value) {
-      this.resume_section = value;
     },
 
     toggle_contact() {
@@ -201,16 +199,36 @@ body {
   transition-duration: 0.2s;
 }
 
+
+/* 
+  Filter for obscuring page when popout is open
+*/
 .blur {
   filter: blur(5px);
 
   transition-duration: 0.3s;
 }
 
+
+/* 
+  Profile bar
+*/
 #profile {
   width: 30vw;
 }
 
+
+/* 
+  Contact pop-up
+*/
+#contact_popup {
+  width: 50vw;
+}
+
+
+/* 
+  Interactive portion of the page (resume)
+*/
 #interactive_resume {
   margin: 0px;
 
@@ -275,6 +293,7 @@ body {
   padding: 0px 5px 2px 160px !important;
 }
 
+
 /* 
   v/^ Icon next to the dropdown selector
 */
@@ -288,6 +307,7 @@ body {
 .transform_icon_180 {
   transform: rotate(180deg) scale(1.1) !important;
 }
+
 
 /* 
   Expanded dropdown menu
@@ -332,6 +352,7 @@ body {
   cursor: pointer;
 }
 
+
 /* 
   Dark/light toggle button
 */
@@ -356,6 +377,7 @@ body {
 #theme_toggle:active {
   transform: scale(0.9) rotate(-30deg);
 }
+
 
 /* 
   Download resume (PDF) button
@@ -389,8 +411,6 @@ body {
   top: 125px;
   left: calc(30px + (14 * 1rem) + 120px);
 }
-
-
 
 
 /* 
