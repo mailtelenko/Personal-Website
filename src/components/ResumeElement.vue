@@ -4,9 +4,10 @@
     <div
       v-on:click      = "toggle_element"
       v-click-outside = "hide"
-      :class          = "{'expand' : isActive}"
-      v-bind:style = "{'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + bg_accent + '), url(' + resolved_bg + ')'}"
-      id              = "resume_element_container"   
+      :class          = "{'expand' : isActive, 
+                          'resume_element_container_hover' : this.points}"
+      v-bind:style    = "{'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + bg_accent + '), url(' + resolved_bg + ')'}"
+      class           = "resume_element_container"   
     >
       <div class = "resume_header">
         <h3 id = "name">{{ name }}</h3>
@@ -89,7 +90,7 @@
 /*
   Parent div for the resume element box
 */
-#resume_element_container {  
+.resume_element_container {  
 
   /* 
     We have to specify the max height here instead of just height
@@ -114,7 +115,7 @@
   transition-duration: 0.8s;
 }
 
-#resume_element_container.expand {
+.resume_element_container.expand {
   max-height: 1000px;
 
   overflow-x: visible; /* TODO: Needed? */
@@ -125,7 +126,7 @@
 /*
   Hover animation for the entire element
 */
-#resume_element_container:hover {
+.resume_element_container_hover:hover {
   box-shadow: -3px 8px 20px var(--box_shadow_colour_intense);
 }
 
@@ -133,7 +134,7 @@
   When the element is not active, increase
   the height slightly when hovered
 */
-#resume_element_container:hover:not(.expand) {
+.resume_element_container_hover:hover:not(.expand) {
   max-height: 150px;
 }
 
@@ -270,7 +271,8 @@ export default {
     },
 
     toggle_element() {
-      this.isActive = !this.isActive;
+      if (this.points && this.points.length > 0)
+        this.isActive = !this.isActive;
     },
 
     click_point(event) {

@@ -112,21 +112,12 @@ export default {
 
   data: function() {
     return {
-      expand_element: true
     };
   },
 
   methods: {
     check_defined(param) {
       return typeof param !== 'undefined';
-    },
-
-    hide() {
-      this.expand_element = false;
-    },
-
-    toggle_element() {
-      this.expand_element = !this.expand_element;
     }
   }
 };

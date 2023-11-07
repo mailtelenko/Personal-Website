@@ -11,7 +11,7 @@
       Section selection
      -->
     <ul
-      v-if = "this.points.length > 1"
+      v-if = "this.points && this.points.length > 1"
     >
       <li
        v-for        = "(point, index) in this.points" 
@@ -113,10 +113,17 @@ export default {
   },
 
   data: function() {
-    return {
-      card_title:  this.points[0].title, 
-      card_topics: this.points[0].content
-    };
+    if (this.points) {
+      return {
+        card_title:  this.points[0].title, 
+        card_topics: this.points[0].content
+      };
+    } else {
+      return {
+        card_title:  null, 
+        card_topics: []
+      };
+    }
   },
 
   methods: {
