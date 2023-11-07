@@ -194,6 +194,7 @@
 */
 #name {
   font-size: 1.5rem;
+  width: 90%;
 }
 
 #year {

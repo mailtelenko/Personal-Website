@@ -56,8 +56,9 @@
         
         :section_elements = "resume_elements[resume_section].elements"
         :timeline         = "resume_elements[resume_section].timeline"
-  
-        title = "Test"
+        :display_grid     = "resume_elements[resume_section].display_grid"
+
+        title = "Loading"
       />
 
       <div

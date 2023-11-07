@@ -1,6 +1,7 @@
 <template>
   <div
     class = "resume_page"
+    :class = "{'grid' : display_grid}"
   >
     
     <Timeline
@@ -8,11 +9,12 @@
     ></Timeline>
 
     <ResumeElement
-      class="resume_element"
-      
+      class = "resume_element"
+      :class = "{'grid' : display_grid}"
+
       v-for          = "element in section_elements"
       v-bind:key     = "`${element.name}_${element.description}`"
-      
+
       :name        = "element.name"
       :dates       = "element.dates"
       :description = "element.description"
@@ -36,10 +38,6 @@
   position: relative;
 }
 
-/*
-  Half size
-*/
-
 .resume_page {
   padding-bottom: 20px;
   padding-right:  30px;
@@ -47,72 +45,24 @@
   position: relative;
 }
 
-.resume_page.half,
-.resume_page.slim {
+
+/* 
+  When grid is enabled
+*/
+.resume_page.grid {
   display: inline-grid;
 
   grid-template-columns: 50% 50%;
   grid-template-rows: auto;
-  row-gap: 30px;
+  row-gap: 0px;
 
-  padding-left: 90px;
-  padding-right: 10px;
+  padding-left: 30px;
 
-  width: calc(100% - 100px);
+  width: calc(100% - 60px);
 }
 
-.resume_page.slim {
-  row-gap: 30px;
-  grid-template-columns: 45% 45%;
-
-  width: 100%;
-
-  padding-left: 90px;
-  width: calc(100% - 50px);
-}
-
-.resume_element.half > div,
-.resume_element.slim > div {
-  width: calc(100% - 100px);
-
-  display: inline-block;
-  position: relative;
-
-  margin: 0px;
-
-  max-height: 110px;
-  height: 110px;
-
-  transition-duration: 0.2s;
-}
-
-.resume_element.slim > div {
-  max-height: 60px;
-  min-height: 60px;
-
-  grid-template-columns: 100% 0%;
-
-  width: calc(100% - 100px);
-}
-
-.resume_element.half > div:hover {
-  max-height: 110px;
-  height: 110px;
-
-  box-shadow: -1px 6px 15px var(--box_shadow_colour);
-
-  transition-duration: 0.2s;
-}
-
-.resume_element.half .above_fold,
-.resume_element.slim .above_fold {
-  width: 100%;
-}
-
-.resume_element.slim > div:hover {
-  max-height: 60px !important;
-  min-height: 60px !important;
-  box-shadow: -1px 6px 15px var(--box_shadow_colour);
+.resume_element.grid {
+  margin-left: 15px;
 }
 </style>
 
@@ -126,7 +76,8 @@ export default {
   props: {
     title:            String,
     section_elements: Array,
-    timeline:         Boolean
+    timeline:         Boolean,
+    display_grid:     Boolean
   },
 
   components: {

@@ -20,9 +20,10 @@ export let data = {
   resume_section: "",
   resume_elements: {
     education: {
-      name:     "education",
-      icon:     ["fas", "graduation-cap"],
-      timeline: true,
+      name:         "education",
+      icon:         ["fas", "graduation-cap"],
+      timeline:     true,
+      display_grid: false,
 
       elements: [
         {
@@ -122,9 +123,10 @@ export let data = {
     },
 
     "work experience": {
-        name:     "work experience",
-        icon:     ["fas", "briefcase"],
-        timeline: true,
+        name:         "work experience",
+        icon:         ["fas", "briefcase"],
+        timeline:     true,
+        display_grid: false,
 
         elements: [
           {
@@ -196,9 +198,10 @@ export let data = {
     },
 
     certifications: {
-      name:     "certifications",
-      icon:     ["fas", "award"],
-      timeline: false,
+      name:         "certifications",
+      icon:         ["fas", "award"],
+      timeline:     false,
+      display_grid: true,
 
       elements: [
         {
@@ -234,9 +237,10 @@ export let data = {
       ]
     },
     skills: {
-      name:     "skills",
-      icon:     ["fas", "pencil-alt"],
-      timeline: false,
+      name:       "skills",
+      icon:       ["fas", "pencil-alt"],
+      timeline:   false,
+      display_grid: true,
 
       elements: [
         {
