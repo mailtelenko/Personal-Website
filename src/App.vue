@@ -53,8 +53,9 @@
 
       <ResumeSection
         v-if             = "resume_section != ''"
-        :resume_elements = "resume_elements[resume_section].elements"
-        :display_props   = "resume_elements[resume_section].display_props"
+        
+        :section_elements = "resume_elements[resume_section].elements"
+        :timeline         = "resume_elements[resume_section].timeline"
   
         title = "Test"
       />

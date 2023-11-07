@@ -126,9 +126,7 @@ export default {
     },
 
     toggle_element() {
-      if (this.display_props.expand) {
-        this.expand_element = !this.expand_element;
-      }
+      this.expand_element = !this.expand_element;
     }
   }
 };

@@ -20,12 +20,9 @@ export let data = {
   resume_section: "",
   resume_elements: {
     education: {
-      name: "education",
-      icon: ["fas", "graduation-cap"],
-      display_props: {
-        expand:   true,
-        timeline: true
-      },
+      name:     "education",
+      icon:     ["fas", "graduation-cap"],
+      timeline: true,
 
       elements: [
         {
@@ -125,12 +122,9 @@ export let data = {
     },
 
     "work experience": {
-        name: "work experience",
-        icon: ["fas", "briefcase"],
-        display_props: {
-          timeline: true,
-          expand:   true
-        },
+        name:     "work experience",
+        icon:     ["fas", "briefcase"],
+        timeline: true,
 
         elements: [
           {
@@ -202,14 +196,10 @@ export let data = {
     },
 
     certifications: {
-      name: "certifications",
-      icon: ["fas", "award"],
-      size: "half",
-      display_props: {
-        timeline: false,
-        size:     "half",
-        expand:   false
-      },
+      name:     "certifications",
+      icon:     ["fas", "award"],
+      timeline: false,
+
       elements: [
         {
           name:   "CISCO IT Essentials",
@@ -244,66 +234,54 @@ export let data = {
       ]
     },
     skills: {
-      name: "skills",
-      icon: ["fas", "pencil-alt"],
-      display_props: {
-        timeline: false,
-        size:     "slim",
-        expand:   false
-      },
+      name:     "skills",
+      icon:     ["fas", "pencil-alt"],
+      timeline: false,
+
       elements: [
         {
           name:   "HTML",
-          dates:  "★ ★ ★ ★ ★",
           image:  "html5.jpg",
           accent: "rgba(21 , 73, 91, .2)"
         },
         {
           name:   "CSS",
-          dates:  "★ ★ ★ ★ ☆",
           image:  "css3.jpeg",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "JavaScript",
-          dates:  "★ ★ ★ ★ ☆",
           image:  "javascript.jpeg",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "Python",
-          dates:  "★ ★ ★ ☆ ☆",
           image:  "python.jpg",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "Java",
           image:  "java.jpg",
-          dates:  "★ ★ ★ ★ ☆",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "Microsoft Office",
           image:  "office.jpeg",
-          dates:  "★ ★ ★ ★ ★",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "Google GSuite",
           image:  "gsuite.jpeg",
-          dates:  "★ ★ ★ ★ ★",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "Autodesk Inventor",
           image:  "inventor.jpg",
-          dates:  "★ ★ ★ ☆ ☆",
           accent: "rgba(0,0,0,0)"
         },
         {
           name:   "Vue JS",
           image:  "vue.jpg",
-          dates:  "★ ★ ☆ ☆ ☆",
           accent: "rgba(0,0,0,0)"
         }
       ]

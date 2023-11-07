@@ -251,8 +251,6 @@ export default {
     bg_image:      String,
 
     points:        Array,
-
-    display_props: Object
   },
 
   components: {
@@ -272,9 +270,7 @@ export default {
     },
 
     toggle_element() {
-      if (this.display_props.expand) {
-        this.isActive = !this.isActive;
-      }
+      this.isActive = !this.isActive;
     },
 
     click_point(event) {

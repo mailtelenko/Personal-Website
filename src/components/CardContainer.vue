@@ -102,8 +102,7 @@ import Card from "./Card.vue";
 export default {
   props: {
     title:         String,
-    topics:        Array,
-    display_props: Object
+    topics:        Array
   },
 
   components: {

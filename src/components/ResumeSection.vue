@@ -1,20 +1,17 @@
 <template>
   <div
-    class  = "resume_page"
-    :class = "{'half': display_props.size == 'half', 'slim': display_props.size == 'slim', 'no_timeline' : !display_props.timeline}"
+    class = "resume_page"
   >
     
     <Timeline
-      :class="{'no_timeline' : !display_props.timeline }"
+      v-if = "timeline"
     ></Timeline>
 
     <ResumeElement
       class="resume_element"
-      :class="{'half': display_props.size == 'half', 'slim': display_props.size == 'slim'}"
       
-      v-for          = "element in resume_elements"
+      v-for          = "element in section_elements"
       v-bind:key     = "`${element.name}_${element.description}`"
-      :display_props = "display_props"
       
       :name        = "element.name"
       :dates       = "element.dates"
@@ -127,9 +124,9 @@ export default {
   name: "ResumeSection",
 
   props: {
-    title:           String,
-    resume_elements: Array,
-    display_props:   Object
+    title:            String,
+    section_elements: Array,
+    timeline:         Boolean
   },
 
   components: {
