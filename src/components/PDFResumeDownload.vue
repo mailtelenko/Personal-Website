@@ -3,6 +3,7 @@
     id     = "pdf_resume_download"
     method = "get" 
     action = "Liam Telenko Resume.pdf"
+    target = "_blank"
   >
     <button 
       id   = "download_button" 
