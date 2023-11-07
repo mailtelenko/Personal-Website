@@ -213,6 +213,8 @@ form {
 
   position: relative;
 
+  z-index: 2;
+
   padding: 0px 0px 7px 0px;
 
   width: 100%;
