@@ -19,8 +19,8 @@
       :location    = "element.location"
       :bg_accent   = "element.accent"
       :bg_image    = "element.image"
-  
-      :points = "element.points"
+      :timeline    = "timeline"
+      :points      = "element.points"
     ></ResumeElement>
   </div>  
 </template>

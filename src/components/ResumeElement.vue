@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="template_pin"> </div>
+    <div 
+      v-if  = "this.timeline"
+      class = "template_pin"
+    > </div>
     <div
       v-on:click      = "toggle_element"
       v-click-outside = "hide"
@@ -250,7 +253,7 @@ export default {
     location:      String,
     bg_accent:     String,
     bg_image:      String,
-
+    timeline:      Boolean,
     points:        Array,
   },
 
