@@ -170,7 +170,7 @@ export let data = {
                 ]
               }
             ],
-            image:    "mcmaster.jpg",
+            image:    "mcmaster3.png",
             accent:   "rgba(202 , 111, 0, .2)"
           },
           {
