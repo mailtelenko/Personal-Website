@@ -3,8 +3,9 @@
     <CardContainer 
       id = "card_container"
 
-      :title  = "card_title"
-      :topics = "card_topics"
+      :title    = "card_title"
+      :subtitle = "card_subtitle"
+      :topics   = "card_topics"
     ></CardContainer>
     
     <!-- 
@@ -115,21 +116,24 @@ export default {
   data: function() {
     if (this.points) {
       return {
-        card_title:  this.points[0].title, 
-        card_topics: this.points[0].content
+        card_title:    this.points[0].title, 
+        card_subtitle: this.points[0].subtitle,
+        card_topics:   this.points[0].content
       };
     } else {
       return {
-        card_title:  null, 
-        card_topics: []
+        card_title:    null, 
+        card_subtitle: null,
+        card_topics:   []
       };
     }
   },
 
   methods: {
     update_card(index) {
-      this.card_title  = this.points[index].title;
-      this.card_topics = this.points[index].content;
+      this.card_title    = this.points[index].title;
+      this.card_subtitle = this.points[index].subtitle;
+      this.card_topics   = this.points[index].content;
     }
   }
 };

@@ -5,11 +5,18 @@
 <template>
   <div>
     <div class = "card_container">
-      <transition 
+      <transition
         name = "slide-fade" 
         mode = "out-in"
       >
-        <h4 :key="title">{{ title }}</h4>
+        <div :key="title">
+          <h4>{{ title }}</h4>
+          <h3 
+            v-if = "subtitle"
+            >
+            {{ subtitle }}
+          </h3>
+        </div>
       </transition>
 
       <transition-group 
@@ -90,8 +97,14 @@
 .card_container h4 {
   font-size:   1.5rem;
   line-height: 1.5rem;
-  
+
   margin-top:    40px;
+  margin-bottom: 20px;
+}
+
+.card_container h3 {
+  font-size:   1.2rem;
+  
   margin-bottom: 30px;
 }
 </style>
@@ -102,6 +115,7 @@ import Card from "./Card.vue";
 export default {
   props: {
     title:         String,
+    subtitle:      String,
     topics:        Array
   },
 
