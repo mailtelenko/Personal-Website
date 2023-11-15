@@ -216,7 +216,7 @@ body {
   Profile bar
 */
 #profile {
-  width: 30vw;
+  width: 25vw;
 }
 
 
@@ -235,7 +235,7 @@ body {
   margin: 0px;
 
   height: 100vh;
-  width:  100%;
+  width:  75vw;
 
   overflow-y: scroll;
 

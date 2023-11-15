@@ -119,7 +119,7 @@ export default {
 
   margin: 5vh 10%;
 
-  font-size:   1.2rem;
+  font-size:   1.1rem;
   line-height: 1.8rem;
 
   background-color: var(--panel_overlay);
