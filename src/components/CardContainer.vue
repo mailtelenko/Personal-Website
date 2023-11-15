@@ -80,7 +80,7 @@
 .card_container {
   position: relative;
 
-  height: 450px;
+  min-height: 300px;
   width:  100%;
 
   /* Configure the padding without affecting the width/height */
@@ -88,7 +88,8 @@
   -webkit-box-sizing: border-box; 
   box-sizing:         border-box;
 
-  padding-left: 40px;
+  padding-left:   40px;
+  padding-bottom: 20px;
 }
 
 /*

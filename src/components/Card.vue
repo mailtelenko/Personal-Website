@@ -89,6 +89,10 @@
 /*
   Card body
 */
+#bullets {
+  padding-left:25px;
+}
+
 #bullets li{
   line-height: 1.4rem;
 
