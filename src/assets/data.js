@@ -1,5 +1,9 @@
+// ==============================================================================
 // JSON containing information for site including:
 // Education, Work experience, skills, certifications, site settings
+// Not technically a JSON file but a JS file with a JSON datastructure to allow
+// for commenting.
+// ==============================================================================
 
 export let data = {
 
@@ -33,22 +37,39 @@ export let data = {
           image:       "mcmaster.jpg",
           points: [
             {
-              title: "Course Highlights 2020",
+              title: "Course Highlights",
               content: [
                 {
-                  title: "Principles of Programming",
+                  title: "Digital Systems Design",
+                  emoji: "🖼️",
                   bullets: [
-                    "Learned C and Java by designing and implementing programs.",
-                    "Studied the structure and uses of low and high level languages."
+                    "Implemented colour space conversion, interpolation, and inverse-signal transformation on virtual FPGA hardware in SystemVerilog",
+                    "Designed modules to efficiently compute matrix operations and manage data in embedded and external memory.",
+                    "Completed unit tests by verifying the operation of individual modules in ModelSim"
                   ]
                 },
                 {
-                  title: "Logic Design",
+                  title: "Microprocessor Systems Project",
+                  emoji: "📐",
                   bullets: [
-                    "Analysed the operation of logic gates and combinational, and sequential circuits.",
-                    "Designed and tested logic using Verilog HDL."
+                    "Developed embedded software for an ARM Cortex platform in C and assembly; wrote visualization software in Python",
+                    "Utilized the I2C and UART protocols to transfer data between the time-of-flight sensor, microcontroller, and data visualization software"
                   ]
                 }
+                // {
+                //   title: "Logic Design",
+                //   bullets: [
+                //     "Analysed the operation of logic gates in combinational and sequential circuits.",
+                //     "Designed and tested logic using Verilog HDL."
+                //   ]
+                // },
+                // {
+                //   title: "Principles of Programming",
+                //   bullets: [
+                //     "Implemented and debugged programs in both C and Java",
+                //     "Studied the efficiency and use cases of common algorithms."
+                //   ]
+                // }
               ]
             },
             {
@@ -56,30 +77,12 @@ export let data = {
               content: [
                 {
                   title: "McMaster Formula Electric",
+                  emoji: "🏎️",
                   bullets: [ 
-                    "A student run team working on designing and fabricating an electric 1/4 scale formula style racecar. \
-                     I was a member of the software and controls team which works on implementing the various digital systems across \
-                     the vehicle using technologies such as CAN.",
-                    "Developing a customizable dashboard interface using interpreted CAN bus information."
-                  ]
-                }
-              ]
-            },
-            {
-              title: "Course Highlights 2019",
-              content: [
-                {
-                  title: "Engineering Computation",
-                  bullets: [ 
-                    "Analysed and implemented algorithms in Python",
-                    "Studied best practices and methods of development"
-                  ]
-                }, 
-                {
-                  title: "Engineering Profession & Practice",
-                  bullets: [
-                    "Developed strong interpersonal and team building skills.",
-                    "Studied the ethics and expectations of working in a professional setting."
+                    "Tasked with building a customizable dashboard as a member of the software and controls team.",
+                    'Worked with previous team leads to design the structure of the software to meet hardware and competition constraints',
+                    "Organized remote development of the dashboard by preparing and delegating sub-projects",
+                    "Worked on integrating real-time metrics using data pulled from components on the CAN bus."
                   ]
                 }
               ]
@@ -130,37 +133,64 @@ export let data = {
 
         elements: [
           {
-            name:        "McMaster University",
-            dates:       "2020 - 2022",
-            location:    "Hamilton, ON",
-            description: "Web and Desktop Applications Assistant | Office of the Registrar",
+            name:        "Synopsys",
+            dates:       "2022 - 2023",
+            location:    "Mississauga, ON",
+            description: "Digital Verification Engineering Intern",
             points: [
               {
-                title:   "Responsibilities",
                 content: [
                   {
+                    title: "Experience",
+                    emoji: "💡",
                     bullets: [
-                      "Provide remote support for users in a variety of hardware and software environments.",
-                      "Work with members of the department to solve and thoroughly document issues as they arise.",
-                      "Perform maintenance on user and backend systems."
+                      "Interned in a mixed-signal verification team on SerDes PHY IP verification.",
+                      "Taped-out two projects which implemented different protocols.",
+                    ]
+                  },
+                  {
+                    title: "Responsibilities",
+                    emoji: "📋",
+                    bullets: [
+                      "Implemented and maintained constrained-random SystemVerilog UVM testbenches",
+                      "Debugged and documented mixed-signal simulation failures from daily regressions",
+                      "Wrote and implemented verification testplans"
                     ]
                   }
                 ]
-              }
+              },
             ],
-            image:    "mcmaster2.jpg",
-            accent:   "rgba(202 , 111, 0, .2)"
+            image:    "circuit.jpg",
+            accent:   "rgba(20, 10, 95, .7)"
           },
           {
             name:        "McMaster University",
-            dates:       "2020",
+            dates:       "2020 - 2022",
             location:    "Hamilton, ON",
-            description: "Information Technology Assistant | Housing and Conference Services",
+            description: "Web and Desktop Applications Assistant | Multiple Departments",
             points: [
               {
-                title: "Responsibilities",
+                title:    "Office of the Registrar",
+                subtitle: "Web and Desktop Applications Assistant",
                 content: [
                   {
+                    title: "Experience",
+                    emoji: "🧑‍💻",
+                    bullets: [
+                      "Developed multiple full stack software solutions in Python for internal tasks resulting in improved efficiency of recurring process",
+                      "Maintained technical and end-user documentation for support tickets and internally developed software",
+                      "Provided remote and in-person desktop and application support for users in a variety of production environments"
+                    ]
+                  }
+                ]
+              },
+              {
+                title:    "Housing & Conference Services",
+                subtitle: "IT Assistant",
+                content: [
+                  {
+                    title: "Experience",
+                    emoji: "🖥️",
                     bullets: [
                       "Provided individual and group support for users in a variety of production environments.",
                       "Troubleshooted computer systems using a priority ticketing system.",
@@ -181,12 +211,14 @@ export let data = {
             image:       "ck.jpg",
             points: [
               {
-                title: "Responsibilities",
                 content: [
                   {
+                    title: "Responsibilities",
+                    emoji: "🏕️",
                     bullets: [ 
-                      "Planned, communicated, and led group activities.",
-                      "Worked in a team to ensure the safe operation of the waterfront and ropes areas."
+                      "Monitored for and supported campers through personal and social challenges.",
+                      "Documented and escalated information to ensure a safe environment for all campers.",
+                      "Planned, communicated, and led group activities for a variety of age groups."
                     ]
                   }
                 ]
