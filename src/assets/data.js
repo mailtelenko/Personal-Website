@@ -43,17 +43,17 @@ export let data = {
                   title: "Digital Systems Design",
                   emoji: "🖼️",
                   bullets: [
-                    "Implemented colour space conversion, interpolation, and inverse-signal transformation on virtual FPGA hardware in SystemVerilog",
+                    "Implemented colour space conversion, interpolation, and inverse-signal transformation on virtual FPGA hardware in SystemVerilog.",
                     "Designed modules to efficiently compute matrix operations and manage data in embedded and external memory.",
-                    "Completed unit tests by verifying the operation of individual modules in ModelSim"
+                    "Completed unit tests by verifying the operation of individual modules in ModelSim."
                   ]
                 },
                 {
                   title: "Microprocessor Systems Project",
                   emoji: "📐",
                   bullets: [
-                    "Developed embedded software for an ARM Cortex platform in C and assembly; wrote visualization software in Python",
-                    "Utilized the I2C and UART protocols to transfer data between the time-of-flight sensor, microcontroller, and data visualization software"
+                    "Developed embedded software for an ARM Cortex platform in C and assembly; wrote visualization software in Python.",
+                    "Utilized the I2C and UART protocols to transfer data between the time-of-flight sensor, microcontroller, and data visualization software."
                   ]
                 }
                 // {
@@ -80,8 +80,8 @@ export let data = {
                   emoji: "🏎️",
                   bullets: [ 
                     "Tasked with building a customizable dashboard as a member of the software and controls team.",
-                    'Worked with previous team leads to design the structure of the software to meet hardware and competition constraints',
-                    "Organized remote development of the dashboard by preparing and delegating sub-projects",
+                    'Worked with previous team leads to design the structure of the software to meet hardware and competition constraints.',
+                    "Organized remote development of the dashboard by preparing and delegating sub-projects.",
                     "Worked on integrating real-time metrics using data pulled from components on the CAN bus."
                   ]
                 }
@@ -152,9 +152,9 @@ export let data = {
                     title: "Responsibilities",
                     emoji: "📋",
                     bullets: [
-                      "Implemented and maintained constrained-random SystemVerilog UVM testbenches",
-                      "Debugged and documented mixed-signal simulation failures from daily regressions",
-                      "Wrote and implemented verification testplans"
+                      "Implemented and maintained constrained-random SystemVerilog UVM testbenches.",
+                      "Debugged and documented mixed-signal simulation failures from daily regressions.",
+                      "Wrote and implemented verification test plans."
                     ]
                   }
                 ]
@@ -177,9 +177,9 @@ export let data = {
                     title: "Experience",
                     emoji: "🧑‍💻",
                     bullets: [
-                      "Developed multiple full stack software solutions in Python for internal tasks resulting in improved efficiency of recurring process",
-                      "Maintained technical and end-user documentation for support tickets and internally developed software",
-                      "Provided remote and in-person desktop and application support for users in a variety of production environments"
+                      "Developed multiple full stack software solutions in Python for internal tasks resulting in improved efficiency of recurring process.",
+                      "Maintained technical and end-user documentation for support tickets and internally developed software.",
+                      "Provided remote and in-person desktop and application support for users in a variety of production environments."
                     ]
                   }
                 ]
@@ -206,11 +206,12 @@ export let data = {
           {
             name:        "Camp Kawartha",
             dates:       "2018 - 2020",
-            description: "Head of Ropes & Lifeguard",
+            description: "Counsellor, Head of Ropes & Lifeguard",
             location:    "Douro-Dummer, ON",
             image:       "ck.jpg",
             points: [
               {
+                title: "Cabin Counsellor",
                 content: [
                   {
                     title: "Responsibilities",
@@ -219,6 +220,34 @@ export let data = {
                       "Monitored for and supported campers through personal and social challenges.",
                       "Documented and escalated information to ensure a safe environment for all campers.",
                       "Planned, communicated, and led group activities for a variety of age groups."
+                    ]
+                  }
+                ]
+              },
+              {
+                title: "Head of Ropes",
+                content: [
+                  {
+                    title: "Responsibilities",
+                    emoji: "🪢",
+                    bullets: [ 
+                      "Took on additional responsibilities in the high and low-rope areas while working as a counsellor and lifeguard.",
+                      "Worked with the land activity director to set up and maintain the ropes courses.",
+                      "Set up, supervised and led team activities in the ropes areas."
+                    ]
+                  }
+                ]
+              },
+              {
+                title: "Lifeguard",
+                content: [
+                  {
+                    title: "Responsibilities",
+                    emoji: "🛟",
+                    bullets: [ 
+                      "Balanced lifeguard shifts with existing responsibilities as a counsellor and head of ropes.",
+                      "Actively monitored swim and boating areas for safety issues.",
+                      "Coordinated with the lifeguard team on responses to active situations."
                     ]
                   }
                 ]
@@ -269,12 +298,27 @@ export let data = {
       ]
     },
     skills: {
-      name:       "skills",
-      icon:       ["fas", "pencil-alt"],
-      timeline:   false,
+      name:         "skills",
+      icon:         ["fas", "pencil-alt"],
+      timeline:     false,
       display_grid: true,
 
       elements: [
+        {
+          name:   "SystemVerilog",
+          image:  "pcb.jpg",
+          accent: "rgba(5 , 15, 135, .2)"
+        },
+        {
+          name:   "Python",
+          image:  "python.jpg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "Creative Problem Solving",
+          image:  "rubiks_cube.jpg",
+          accent: "rgba(0,0,0,0)"
+        },
         {
           name:   "HTML",
           image:  "html5.jpg",
@@ -291,11 +335,6 @@ export let data = {
           accent: "rgba(0,0,0,0)"
         },
         {
-          name:   "Python",
-          image:  "python.jpg",
-          accent: "rgba(0,0,0,0)"
-        },
-        {
           name:   "Java",
           image:  "java.jpg",
           accent: "rgba(0,0,0,0)"
@@ -308,16 +347,6 @@ export let data = {
         {
           name:   "Google GSuite",
           image:  "gsuite.jpeg",
-          accent: "rgba(0,0,0,0)"
-        },
-        {
-          name:   "Autodesk Inventor",
-          image:  "inventor.jpg",
-          accent: "rgba(0,0,0,0)"
-        },
-        {
-          name:   "Vue JS",
-          image:  "vue.jpg",
           accent: "rgba(0,0,0,0)"
         }
       ]
