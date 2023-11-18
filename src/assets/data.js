@@ -1,232 +1,355 @@
+// ==============================================================================
 // JSON containing information for site including:
 // Education, Work experience, skills, certifications, site settings
+// Not technically a JSON file but a JS file with a JSON datastructure to allow
+// for commenting.
+// ==============================================================================
 
 export let data = {
-    resume_section: "",
-    bio:
-        "I am a second year computer engineering student studying at McMaster University in Hamilton, Ontario. I am an avid developer who creates fluid layouts and efficient code.",
 
-    dark_mode: false,
-    show_contact: false,
-    show_dropdown: false,
+  // =============
+  // Profile
+  // =============
+  bio: "I am a fourth-year Computer Engineering student studying at McMaster University. \
+        I am passionate about computer hardware, with a particular interest in mixed-signal verification.",
+    
+  // =================
+  // Site settings
+  // =================
+  dark_mode:     false,
+  show_contact:  false,
+  show_dropdown: false,
 
-    resume_elements: {
-        education: {
-            name: "education",
-            icon: ["fas", "graduation-cap"],
-            display_props: {
-                expand: true,
-                timeline: true
-            },
 
-            elements: [
+  resume_section: "",
+  resume_elements: {
+    education: {
+      name:         "education",
+      icon:         ["fas", "graduation-cap"],
+      timeline:     true,
+      display_grid: false,
+
+      elements: [
+        {
+          name:        "McMaster University",
+          dates:       "2019 - Present",
+          description: "Computer Engineering, (Co-Op)",
+          image:       "mcmaster.jpg",
+          points: [
+            {
+              title: "Course Highlights",
+              content: [
                 {
-                    name: "McMaster University",
-                    dates: "2019 - Present",
-                    description: "Computer Engineering <br/>(co-op)",
-                    image: "mcmaster.jpg",
-                    points: [
-                        {
-                            title: "Course Highlights 2020",
-                            content:
-                                "<span class='bold_text'>Principles of Programming</span><ul class='expand_list'><li>Learned C and Java by designing and implementing programs.</li><li>Studied the structure and uses of low and high level languages.</li></ul><hr/><span class='bold_text'>Logic Design</span><ul class='expand_list'><li>Analysed the operation of logic gates and combinational, and sequential circuits.</li><li>Designed and tested logic using Verilog HDL.</li></ul>"
-                        },
-                        {
-                            title: "Club - McMaster Formula Electric",
-                            content:
-                                "<p><a href='https://macformularacing.com/' target='_blank'>MAC Formula Electric</a> is a student run team working on designing and fabricating an electric 1/4 scale formula style racecar.<br/><br/>I am apart of the software and controls team which works on implementing the various digital systems across the vehicle using technologies such as CAN.</p><hr/><span class='bold_text'>Projects</span><ul class='expand_list'><li>Developing a customizable dashboard interface using interpreted CAN bus information.</li></ul>"
-                        },
-                        {
-                            title: "Course Highlights 2019",
-                            content:
-                                "<span class='bold_text'>Engineering Computation</span><ul class='expand_list'><li>Analysed and implemented algorithms in Python</li><li>Studied best practices and methods of development</li></ul><hr/><span class='bold_text'>Engineering Profession & Practice</span><ul class='expand_list'><li>Developed strong interpersonal and team building skills.</li><li>Studied the ethics and expectations of working in a professional setting.</li></ul>"
-                        }
-                    ],
-                    location: "Hamilton, ON",
-                    accent: "rgba(202 , 111, 0, .2)"
+                  title: "Digital Systems Design",
+                  emoji: "🖼️",
+                  bullets: [
+                    "Implemented colour space conversion, interpolation, and inverse-signal transformation on virtual FPGA hardware in SystemVerilog.",
+                    "Designed modules to efficiently compute matrix operations and manage data in embedded and external memory.",
+                    "Completed unit tests by verifying the operation of individual modules in ModelSim."
+                  ]
                 },
                 {
-                    name: "William Lyon Mackenzie",
-                    dates: "2019 - Present",
-                    location: "Toronto, ON",
-                    description: "MaCS (Math and Computer Science)<br/>OSSD",
-                    points: [
-                        {
-                            title: "Course Highlights",
-                            content:
-                                "<span class='bold_text'>Computer Engineering Technology</span><ul class='expand_list'><li>Studied and applied CISCO IT training in small scale simulations.</li><li>Developed low level programs for 8085 microprocessors.</li></ul><hr/><span class='bold_text'>Introduction to Computer Science</span><ul class='expand_list'><li>Worked in teams to develop full stack software in Java.</li><li>Studied computer science theory at the AP level.</li></ul>"
-                        }
-                    ],
-                    image: "wlmac.jpg",
-                    accent: "rgba(0,0,0,0)"
+                  title: "Microprocessor Systems Project",
+                  emoji: "📐",
+                  bullets: [
+                    "Developed embedded software for an ARM Cortex platform in C and assembly; wrote visualization software in Python.",
+                    "Utilized the I2C and UART protocols to transfer data between the time-of-flight sensor, microcontroller, and data visualization software."
+                  ]
                 }
-            ]
+                // {
+                //   title: "Logic Design",
+                //   bullets: [
+                //     "Analysed the operation of logic gates in combinational and sequential circuits.",
+                //     "Designed and tested logic using Verilog HDL."
+                //   ]
+                // },
+                // {
+                //   title: "Principles of Programming",
+                //   bullets: [
+                //     "Implemented and debugged programs in both C and Java",
+                //     "Studied the efficiency and use cases of common algorithms."
+                //   ]
+                // }
+              ]
+            },
+            {
+              title: "Clubs",
+              content: [
+                {
+                  title: "McMaster Formula Electric",
+                  emoji: "🏎️",
+                  bullets: [ 
+                    "Tasked with building a customizable dashboard as a member of the software and controls team.",
+                    'Worked with previous team leads to design the structure of the software to meet hardware and competition constraints.',
+                    "Organized remote development of the dashboard by preparing and delegating sub-projects.",
+                    "Worked on integrating real-time metrics using data pulled from components on the CAN bus."
+                  ]
+                }
+              ]
+            }
+          ],
+          location: "Hamilton, ON",
+          accent:   "rgba(202 , 111, 0, .2)"
         },
-
-        "work experience": {
-            name: "work experience",
-            icon: ["fas", "briefcase"],
-            display_props: {
-                timeline: true,
-                expand: true
-            },
-
-            elements: [
+        {
+          name:        "William Lyon Mackenzie",
+          dates:       "2015 - 2019",
+          location:    "Toronto, ON",
+          description: "OSSD, MaCS (Math and Computer Science)",
+          points: [
+            {
+              title: "Course Highlights",
+              content: [
                 {
-                    name: "McMaster University",
-                    dates: "2020 - Present",
-                    description: "<b>Web and Desktop Applications Assistant</b><br/>Office of the Registrar",
-                    points: [
-                        {
-                            title: "Responsibilities",
-                            content:
-                                "<ul class='expand_list'><li>Provide remote support for users in a variety of hardware and software environments.</li><li>Work with members of the department to solve and thoroughly document issues as they arise.</li><li>Perform maintenance on user and backend systems.</li></ul>"
-                        }
-                    ],
-                    image: "mcmaster2.jpg",
-                    location: "Hamilton, ON",
-                    accent: "rgba(202 , 111, 0, .2)"
+                  emoji: "🖥️",
+                  title: "Computer Engineering Technology",
+                  bullets: [
+                    "Studied and applied CISCO IT training in small scale simulations.",
+                    "Developed low level programs for 8085 microprocessors."
+                  ]
                 },
                 {
-                    name: "McMaster University",
-                    dates: "2020",
-                    description: "<b>Information Technology Assistant</b><br/>Housing and Conference Services",
-                    points: [
-                        {
-                            title: "Responsibilities",
-                            content:
-                                "<ul class='expand_list'><li>Provided individual and group support for users in a variety of production environments.</li><li>Troubleshooted computer systems using a priority ticketing system.</li><li>Performed maintenance on customer systems including disk imaging, virus removal, and hardware upgrades.</ul>"
-                        }
-                    ],
-                    image: "mcmaster.jpg",
-                    location: "Hamilton, ON",
-                    accent: "rgba(202 , 111, 0, .2)"
-                },
-                {
-                    name: "Camp Kawartha",
-                    dates: "2018 - 2020",
-                    description: "<b>Head of Ropes & Lifeguard</b>",
-                    location: "Douro-Dummer, ON",
-                    image: "ck.JPG",
-                    points: [
-                        {
-                            title: "Responsibilities",
-                            content:
-                                "<ul class='expand_list'><li>Planned, communicated, and led group activities.</li><li>Worked in a team to ensure the safe operation of the waterfront and ropes areas.</li></ul>"
-                        }
-                    ],
-                    accent: "rgba(0,0,0,0)"
+                  emoji: "💽",
+                  title: "Introduction to Computer Science",
+                  bullets: [
+                    "Worked in teams to develop full stack software in Java.",
+                    "Studied computer science theory at the AP level."
+                  ]
                 }
-            ]
-        },
-
-        certifications: {
-            name: "certifications",
-            icon: ["fas", "award"],
-            size: "half",
-            display_props: {
-                timeline: false,
-                size: "half",
-                expand: false
-            },
-            elements: [
-                {
-                    name: "CISCO IT Essentials",
-                    dates: "2020",
-                    image: "keyboard.jpg",
-                    accent: "rgba(21 , 73, 91, .2)"
-                },
-                {
-                    name:
-                        "FIT Network Systems and Operations with Industry Certificate",
-                    dates: "2019",
-                    image: "network.jpg",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "FIT Software Design and Development",
-                    dates: "2019",
-                    image: "programming.jpeg",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Standard First Aid and CPR/AED Level C",
-                    dates: "2018",
-                    image: "aed.jpeg",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "WHMIS",
-                    dates: "2018",
-                    image: "whmis.jpg",
-                    accent: "rgba(0,0,0,0)"
-                }
-            ]
-        },
-        skills: {
-            name: "skills",
-            icon: ["fas", "pencil-alt"],
-            display_props: {
-                timeline: false,
-                size: "slim",
-                expand: false
-            },
-            elements: [
-                {
-                    name: "HTML",
-                    dates: "★ ★ ★ ★ ★",
-                    image: "html5.jpg",
-                    accent: "rgba(21 , 73, 91, .2)"
-                },
-                {
-                    name: "CSS",
-                    dates: "★ ★ ★ ★ ☆",
-                    image: "css3.jpeg",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "JavaScript",
-                    dates: "★ ★ ★ ★ ☆",
-                    image: "javascript.jpeg",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Python",
-                    dates: "★ ★ ★ ☆ ☆",
-                    image: "python.jpg",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Java",
-                    image: "java.jpg",
-                    dates: "★ ★ ★ ★ ☆",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Microsoft Office",
-                    image: "office.jpeg",
-                    dates: "★ ★ ★ ★ ★",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Google GSuite",
-                    image: "gsuite.jpeg",
-                    dates: "★ ★ ★ ★ ★",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Autodesk Inventor",
-                    image: "inventor.jpg",
-                    dates: "★ ★ ★ ☆ ☆",
-                    accent: "rgba(0,0,0,0)"
-                },
-                {
-                    name: "Vue JS",
-                    image: "vue.jpg",
-                    dates: "★ ★ ☆ ☆ ☆",
-                    accent: "rgba(0,0,0,0)"
-                }
-            ]
+              ]
+            }
+          ],
+          image:  "wlmac.jpg",
+          accent: "rgba(0,0,0,0)"
         }
+      ]
+    },
+
+    "work experience": {
+        name:         "work experience",
+        icon:         ["fas", "briefcase"],
+        timeline:     true,
+        display_grid: false,
+
+        elements: [
+          {
+            name:        "Synopsys",
+            dates:       "2022 - 2023",
+            location:    "Mississauga, ON",
+            description: "Digital Verification Engineering Intern",
+            points: [
+              {
+                content: [
+                  {
+                    title: "Experience",
+                    emoji: "💡",
+                    bullets: [
+                      "Interned in a mixed-signal verification team on SerDes PHY IP verification.",
+                      "Taped-out two projects which implemented different protocols.",
+                    ]
+                  },
+                  {
+                    title: "Responsibilities",
+                    emoji: "📋",
+                    bullets: [
+                      "Implemented and maintained constrained-random SystemVerilog UVM testbenches.",
+                      "Debugged and documented mixed-signal simulation failures from daily regressions.",
+                      "Wrote and implemented verification test plans."
+                    ]
+                  }
+                ]
+              },
+            ],
+            image:    "circuit.jpg",
+            accent:   "rgba(20, 10, 95, .7)"
+          },
+          {
+            name:        "McMaster University",
+            dates:       "2020 - 2022",
+            location:    "Hamilton, ON",
+            description: "Web and Desktop Applications Assistant | Multiple Departments",
+            points: [
+              {
+                title:    "Office of the Registrar",
+                subtitle: "Web and Desktop Applications Assistant",
+                content: [
+                  {
+                    title: "Experience",
+                    emoji: "🧑‍💻",
+                    bullets: [
+                      "Developed multiple full stack software solutions in Python for internal tasks resulting in improved efficiency of recurring process.",
+                      "Maintained technical and end-user documentation for support tickets and internally developed software.",
+                      "Provided remote and in-person desktop and application support for users in a variety of production environments."
+                    ]
+                  }
+                ]
+              },
+              {
+                title:    "Housing & Conference Services",
+                subtitle: "IT Assistant",
+                content: [
+                  {
+                    title: "Experience",
+                    emoji: "🖥️",
+                    bullets: [
+                      "Provided individual and group support for users in a variety of production environments.",
+                      "Troubleshooted computer systems using a priority ticketing system.",
+                      "Performed maintenance on customer systems including disk imaging, virus removal, and hardware upgrades."
+                    ]
+                  }
+                ]
+              }
+            ],
+            image:    "mcmaster3.png",
+            accent:   "rgba(202 , 111, 0, .2)"
+          },
+          {
+            name:        "Camp Kawartha",
+            dates:       "2018 - 2020",
+            description: "Counsellor, Head of Ropes & Lifeguard",
+            location:    "Douro-Dummer, ON",
+            image:       "ck.jpg",
+            points: [
+              {
+                title: "Cabin Counsellor",
+                content: [
+                  {
+                    title: "Responsibilities",
+                    emoji: "🏕️",
+                    bullets: [ 
+                      "Monitored for and supported campers through personal and social challenges.",
+                      "Documented and escalated information to ensure a safe environment for all campers.",
+                      "Planned, communicated, and led group activities for a variety of age groups."
+                    ]
+                  }
+                ]
+              },
+              {
+                title: "Head of Ropes",
+                content: [
+                  {
+                    title: "Responsibilities",
+                    emoji: "🪢",
+                    bullets: [ 
+                      "Took on additional responsibilities in the high and low-rope areas while working as a counsellor and lifeguard.",
+                      "Worked with the land activity director to set up and maintain the ropes courses.",
+                      "Set up, supervised and led team activities in the ropes areas."
+                    ]
+                  }
+                ]
+              },
+              {
+                title: "Lifeguard",
+                content: [
+                  {
+                    title: "Responsibilities",
+                    emoji: "🛟",
+                    bullets: [ 
+                      "Balanced lifeguard shifts with existing responsibilities as a counsellor and head of ropes.",
+                      "Actively monitored swim and boating areas for safety issues.",
+                      "Coordinated with the lifeguard team on responses to active situations."
+                    ]
+                  }
+                ]
+              }
+            ],
+            accent: "rgba(0,0,0,0)"
+          }
+        ]
+    },
+
+    certifications: {
+      name:         "certifications",
+      icon:         ["fas", "award"],
+      timeline:     false,
+      display_grid: true,
+
+      elements: [
+        {
+          name:   "CISCO IT Essentials",
+          dates:  "2020",
+          image:  "keyboard.jpg",
+          accent: "rgba(21 , 73, 91, .2)"
+        },
+        {
+          name:   "FIT Network Systems and Operations with Industry Certificate",
+          dates:  "2019",
+          image:  "network.jpg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "FIT Software Design and Development",
+          dates:  "2019",
+          image:  "programming.jpeg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "Standard First Aid and CPR/AED Level C",
+          dates:  "2018",
+          image:  "aed.jpeg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "WHMIS",
+          dates:  "2018",
+          image:  "whmis.jpg",
+          accent: "rgba(0,0,0,0)"
+        }
+      ]
+    },
+    skills: {
+      name:         "skills",
+      icon:         ["fas", "pencil-alt"],
+      timeline:     false,
+      display_grid: true,
+
+      elements: [
+        {
+          name:   "SystemVerilog",
+          image:  "pcb.jpg",
+          accent: "rgba(5 , 15, 135, .2)"
+        },
+        {
+          name:   "Python",
+          image:  "python.jpg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "Creative Problem Solving",
+          image:  "rubiks_cube.jpg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "HTML",
+          image:  "html5.jpg",
+          accent: "rgba(21 , 73, 91, .2)"
+        },
+        {
+          name:   "CSS",
+          image:  "css3.jpeg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "JavaScript",
+          image:  "javascript.jpeg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "Java",
+          image:  "java.jpg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "Microsoft Office",
+          image:  "office.jpeg",
+          accent: "rgba(0,0,0,0)"
+        },
+        {
+          name:   "Google GSuite",
+          image:  "gsuite.jpeg",
+          accent: "rgba(0,0,0,0)"
+        }
+      ]
     }
+  }
 }

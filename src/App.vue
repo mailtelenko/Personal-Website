@@ -1,76 +1,105 @@
 <template>
   <div id="app">
-    <Profile v-on:contact_button="toggle_contact" id="profile_container" :bio="bio" />
+    <Profile 
+      id                  = "profile"
+      v-on:contact_button = "toggle_contact"
+      :bio                = "bio"
+    />
 
-    <div :class="{'blur': show_contact}" id="interactive_resume">
-      <h2>Get to know my</h2>
-      <div id="page_dropdown">
-        <span
-          v-on:click="show_dropdown = !show_dropdown"
-          v-click-outside="hide_dropdown"
-          :class="{'empty_fill': resume_section == '', 'dropdown_active': show_dropdown}"
-          id="resume_page"
-        >
-          {{ resume_section }}
-          <font-awesome-icon
-            id="dropdown_chevron"
-            icon="chevron-down"
-            :class="{'invert': show_dropdown}"
-          />
-        </span>
-
-        <ul class="panel dropdown" v-show="show_dropdown">
-          <li
-            v-for="page in resume_elements"
-            :key="page"
-            v-show="resume_section != page.name"
-            :value="page.name"
-            @click="update_page(page.name)"
+    <div 
+      :class = "{'blur': show_contact}" 
+      id     = "interactive_resume"
+    >
+      <div id="dropdown_container">
+        <h2>Get to know my</h2>
+        <div id="page_dropdown">
+          <span
+            v-on:click      = "show_dropdown = !show_dropdown"
+            v-click-outside = "hide_dropdown"
+            :class          = "{
+                                'fill_resume_section_title' : resume_section == '',
+                                'dropdown_active'           : show_dropdown
+                              }"
+            id              = "current_resume_section_title"
           >
-            <font-awesome-icon class="dropdown_icon" :icon="page.icon" />
-            {{page.name}}
-          </li>
-        </ul>
+            {{ resume_section }}
+            <font-awesome-icon
+              id     = "dropdown_chevron"
+              icon   = "chevron-down"
+              :class = "{'transform_icon_180': show_dropdown}"
+            />
+          </span>
+
+          <ul 
+            class  = "panel dropdown"
+            v-show = "show_dropdown"
+          >
+            <li
+              v-for  = "page in resume_elements"
+              :key   = "page.name"
+              v-show = "resume_section != page.name"
+              :value = "page.name"
+              @click = "update_page(page.name)"
+            >
+              <font-awesome-icon 
+                class="dropdown_icon" 
+                :icon="page.icon" 
+              />
+              {{page.name}}
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div v-show="resume_section == ''" id="starting_page">
-        <font-awesome-icon id="point_icon" icon="hand-point-up" />
-        <h3>Select an item from the list above to get started or download a copy of my resume below.</h3>
-        <form method="get" action="Liam Telenko Resume.pdf">
-          <button id="download_button" type='submit'>
-            <font-awesome-icon icon="file-alt" />Download Resume
-          </button>
-        </form>
-      </div>
+      <ResumeSection
+        v-if             = "resume_section != ''"
+        
+        :section_elements = "resume_elements[resume_section].elements"
+        :timeline         = "resume_elements[resume_section].timeline"
+        :display_grid     = "resume_elements[resume_section].display_grid"
 
-      <ResumeComponent
-        v-if="resume_section != ''"
-        :resume_elements="resume_elements[resume_section].elements"
-        :display_props="resume_elements[resume_section].display_props"
-        title="Test"
+        title = "Loading"
       />
 
+      <div
+        id="starting_page"
+        v-show="resume_section == ''"
+      >
+        <font-awesome-icon id="point_icon" icon="hand-point-up" />
+        <h3>Select an item from the list above to get started or download a copy of my resume below.</h3>
+      </div>
+
+      <PDFResumeDownload
+        :class = "{'sticky_bottom' : resume_section != ''}"
+      >
+      </PDFResumeDownload>
+      
       <font-awesome-icon
-        v-on:click="toggle_dark"
-        id="dark_toggle"
-        class="panel panel_hover"
-        :icon="['fas', 'moon']"
+        id         = "theme_toggle"
+        v-on:click = "toggle_theme"
+        class      = "panel panel_hover"
+        :icon      = "['fas', 'moon']"
       />
     </div>
 
     <transition name="slide-up-fade">
       <div v-show="show_contact">
         <div id="mobile_blur"></div>
-        <Contact @close_contact="this.force_hide_cont" v-click-outside="hide_contact" />
+        <Contact 
+          id                 = "contact_popup"
+          v-click-outside    = "hide_contact"
+          v-on:close_contact = "hide_contact(true)"
+        />
       </div>
     </transition>
   </div>
 </template>
 
 <script>
-import Profile from "./components/Profile.vue";
-import ResumeComponent from "./components/ResumeComponent.vue";
-import Contact from "./components/Contact.vue";
+import Profile           from "./components/Profile.vue";
+import ResumeSection     from "./components/ResumeSection.vue";
+import Contact           from "./components/Contact.vue";
+import PDFResumeDownload from "./components/PDFResumeDownload.vue";
 
 import * as info from "./assets/data.js";
 
@@ -78,8 +107,9 @@ export default {
   name: "App",
   components: {
     Profile,
-    ResumeComponent,
-    Contact
+    ResumeSection,
+    Contact,
+    PDFResumeDownload
   },
 
   created() {
@@ -87,43 +117,37 @@ export default {
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
-      this.toggle_dark();
+      this.dark_mode = true;
+      this.set_theme();
     }
   },
 
   methods: {
-    toggle_dark() {
-      if (!this.dark_mode)
-        document.documentElement.setAttribute("data-theme", "dark");
-      else document.documentElement.setAttribute("data-theme", "light");
+    set_theme() {
+      if (this.dark_mode) document.documentElement.setAttribute("data-theme", "dark");
+      else                document.documentElement.setAttribute("data-theme", "light");
+    },
 
+    toggle_theme() {
       this.dark_mode = !this.dark_mode;
+      this.set_theme();
     },
 
     hide_dropdown() {
       this.show_dropdown = false;
     },
 
-    force_hide_cont() {
-      this.show_contact = false;
-    },
-
-    hide_contact(e) {
-      if (e.explicitOriginalTarget.innerHTML != "Contact Me")
-        this.show_contact = false;
-    },
-
     update_page(value) {
       this.resume_section = value;
     },
 
+    hide_contact(e) {
+      if (e == true || !e.explicitOriginalTarget.innerHTML.includes("Contact Me"))
+        this.show_contact = false;
+    },
+
     toggle_contact() {
       this.show_contact = !this.show_contact;
-      if (this.show_contact) {
-        this.contact_component = "";
-      } else {
-        this.contact_component = "Contact";
-      }
     }
   },
 
@@ -133,135 +157,36 @@ export default {
 };
 </script>
 
-<!-- Global Styling !-->
+
 <style>
-/* Variable declaration */
-:root {
-  --background-colour: rgb(228, 228, 228);
-
-  --panel_colour: rgb(247, 247, 247);
-  --panel_hover: rgb(235, 235, 235);
-  --panel_embed: rgb(207, 207, 207);
-  --panel_dark_embed: rgb(145, 145, 145);
-  --panel_overlay: rgba(238, 238, 238, 0.589);
-
-  --accent_colour: #e94f37;
-  --accent_opp: rgb(12, 76, 82);
-  --accent_opp_muted: #041b15;
-  --accent_opp_highlight: #1e6b7e;
-
-  --box_shadow_colour: rgba(0, 0, 0, 0.15);
-  --box_shadow_colour_intense: rgba(0, 0, 0, 0.22);
-
-  --default_text: rgb(0, 0, 0);
-}
-
-[data-theme="dark"] {
-  --background-colour: rgb(41, 41, 43);
-
-  --panel_colour: rgb(59, 59, 59);
-  --panel_hover: rgb(90, 90, 90);
-  --panel_embed: rgb(216, 216, 216);
-  --panel_overlay: rgba(56, 55, 55, 0.726);
-
-  --box_shadow_colour: rgba(24, 19, 19, 0.4);
-  --box_shadow_colour_intense: rgba(0, 0, 0, 0.653);
-
-  --accent_colour: #e94f37;
-  --accent_opp: rgb(12, 76, 82);
-  --accent_opp_muted: #041b15;
-  --accent_opp_highlight: #1d7874;
-
-  --default_text: rgb(245, 241, 241);
-}
-
-@font-face {
-  font-family: "BebasNeue";
-  src: url("./assets/Cabin-Regular-TTF.ttf");
-}
-
-@font-face {
-  font-family: "CabinBold";
-  src: url("./assets/Cabin-Bold-TTF.ttf");
-}
-
-body {
-  height: 100vh;
-  overflow: hidden;
-
-  background-color: var(--background-colour);
-
-  margin: 0px;
-  padding: 0px;
-}
-
+/* 
+  Configure the font globally
+*/
 * {
   font-family: "BebasNeue" !important;
 }
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
+  height:   100vh;
+  overflow: hidden;
 
-  height: 100vh;
-  width: 100vw;
+  background-color: var(--background-colour);
+
+  margin:  0px;
+  padding: 0px;
 }
 
-.bold_text {
-  font-family: "CabinBold" !important;
+#app {
+  display:        flex;
+  flex-direction: row;
 }
 
 /*
   Components
 */
-
-button {
-  border: none;
-  border-radius: 1000px;
-
-  padding: 15px 30px;
-
-  color: white;
-
-  background-color: var(--accent_opp);
-
-  box-shadow: 0px 2px 15px var(--box_shadow_colour);
-
-  transition-duration: 0.2s;
-}
-
-button:hover {
-  transform: translateY(-2px) scale(1.01, 1.01);
-
-  box-shadow: 0px 4px 15px var(--box_shadow_colour_intense);
-
-  background-color: var(--accent_opp_highlight);
-
-  cursor: pointer;
-
-  transition-duration: 0.2s;
-}
-
-button:focus {
-  outline: 0;
-}
-
-button::-moz-focus-inner {
-  border: 0;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-.button_icon {
-  padding-right: 20px;
-}
-
 .panel {
   background-color: var(--panel_colour);
-  color: var(--default_text);
+  color:            var(--default_text);
 
   box-shadow: 0px 0px 10px var(--box_shadow_colour);
 
@@ -276,34 +201,47 @@ button:active {
   transition-duration: 0.2s;
 }
 
+
+/* 
+  Filter for obscuring page when popout is open
+*/
 .blur {
   filter: blur(5px);
 
   transition-duration: 0.3s;
 }
 
-#profile_container {
-  width: 25vw;
 
-  position: absolute;
-  left: 0px;
-  top: 0px;
+/* 
+  Profile bar
+*/
+#profile {
+  width: 25vw;
 }
 
+
+/* 
+  Contact pop-up
+*/
+#contact_popup {
+  width: 50vw;
+}
+
+
+/* 
+  Interactive portion of the page (resume)
+*/
 #interactive_resume {
   margin: 0px;
 
-  width: 75vw;
   height: 100vh;
+  width:  75vw;
+
+  overflow-y: scroll;
+
+  position: relative;
 
   color: var(--default_text);
-
-  overflow: auto;
-  overflow-x: hidden;
-
-  position: absolute;
-  top: 0px;
-  right: 0px;
 
   transition-duration: 0.2s;
 }
@@ -317,14 +255,17 @@ button:active {
   font-size: 2rem;
 }
 
-#page_dropdown {
-  display: inline-block;
 
+/* 
+  Dropdown list of sections
+*/
+#page_dropdown {
+  display:  inline-block;
   position: relative;
 }
 
-#resume_page {
-  border: none;
+#current_resume_section_title {
+  border:        none;
   border-bottom: 2px solid var(--default_text);
 
   background-color: transparent;
@@ -340,27 +281,24 @@ button:active {
   cursor: pointer;
 }
 
-#resume_page:hover > #dropdown_chevron {
+#current_resume_section_title:hover > #dropdown_chevron {
   transform: scale(1.1) translateY(-2px);
 
   transition-duration: 0.2s;
 }
 
-#resume_page:hover,
-.dropdown_active {
-  border-width: 3px !important;
-
-  border-color: var(--accent_opp) !important;
-
-  transition-duration: 0.1s !important;
+/* 
+  At startup, the padding needs to be adjusted to create an empty
+  dropdown selector.
+*/
+.fill_resume_section_title {
+  padding: 0px 5px 2px 160px !important;
 }
 
-.invert {
-  transform: rotate(180deg) scale(1.1) !important;
 
-  transition-duration: 0.2s;
-}
-
+/* 
+  v/^ Icon next to the dropdown selector
+*/
 #dropdown_chevron {
   height: 20px;
   margin: 0px 5px 3px 15px;
@@ -368,26 +306,30 @@ button:active {
   transition-duration: 0.2s;
 }
 
-.empty_fill {
-  padding: 0px 5px 2px 160px !important;
+.transform_icon_180 {
+  transform: rotate(180deg) scale(1.1) !important;
 }
 
+
+/* 
+  Expanded dropdown menu
+*/
 .dropdown {
-  width: 220px;
+  width:  220px;
   height: auto;
 
   padding: 0px;
 
   position: absolute;
-  top: 40px;
-  z-index: 100;
+  top:      40px;
+  z-index:  100;
 
   border-radius: 5px;
 }
 
 .dropdown li {
   padding: 12px 15px;
-  margin: 5px 0px;
+  margin:  5px 0px;
 
   list-style-type: none;
 
@@ -395,10 +337,10 @@ button:active {
 }
 
 .dropdown_icon {
-  margin-left: 5px;
+  margin-left:  5px;
   margin-right: 10px;
 
-  display: inline-block;
+  display:  inline-block;
   position: relative;
 
   width: 30px !important;
@@ -412,27 +354,41 @@ button:active {
   cursor: pointer;
 }
 
-#dark_toggle {
+
+/* 
+  Dark/light toggle button
+*/
+#theme_toggle {
   position: absolute;
 
-  width: 20px;
+  width:  20px;
   height: 20px;
 
   padding: 10px;
 
   border-radius: 100px;
 
-  top: 20px;
+  top:   20px;
   right: 30px;
 }
 
-#dark_toggle:hover {
+#theme_toggle:hover {
   transform: rotate(-18deg);
 }
 
-#dark_toggle:active {
+#theme_toggle:active {
   transform: scale(0.9) rotate(-30deg);
 }
+
+
+/* 
+  Download resume (PDF) button
+*/
+.sticky_bottom {
+  position: sticky;
+  bottom:   30px;
+}
+
 
 /*
   Starting page
@@ -458,28 +414,6 @@ button:active {
   left: calc(30px + (14 * 1rem) + 120px);
 }
 
-#download_button {
-  text-align: center;
-
-  margin-top: 30px;
-}
-
-#download_button .fa-file-alt {
-  padding-right: 10px;
-}
-
-/*
-  Expanded list elements
-*/
-.expand_list li {
-  margin-top: 15px;
-}
-
-hr {
-  margin: 25px 15px 25px 10px;
-
-  color: var(--panel_embed);
-}
 
 /* 
   Animations
@@ -508,20 +442,7 @@ hr {
   Mobile
 */
 @media only screen and (max-width: 1100px) {
-  #profile_container {
-    width: 30vw;
-  }
-
-  #interactive_resume {
-    width: 70vw;
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  #profile_container {
-    width: 100vw;
-  }
-
+  
   #interactive_resume {
     display: none;
   }
@@ -530,12 +451,16 @@ hr {
     position: absolute;
 
     left: 0px;
-    top: 0px;
+    top:  0px;
 
-    width: 100vw;
+    width:  100vw;
     height: 100vh;
 
     background-color: var(--box_shadow_colour);
+  }
+
+  #contact_popup {
+    width: 70vw;
   }
 }
 </style>

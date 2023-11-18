@@ -1,32 +1,47 @@
 <template>
-  <div v-bind:class="{ 'expand' : expand_element}">
+  <div>
+    <div 
+      v-if  = "this.timeline"
+      class = "template_pin"
+    > </div>
     <div
-      v-on:click="toggle_element"
-      v-click-outside="hide"
-      :class="{'expanded' : expand_element}"
-      v-bind:style="{ 'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + element_data.accent + '), url(/images/' + element_data.image + ')'}"
+      v-on:click      = "toggle_element"
+      v-click-outside = "hide"
+      :class          = "{'expand' : isActive, 
+                          'resume_element_container_hover' : this.points}"
+      v-bind:style    = "{'background-image': 'linear-gradient(140deg, var(--panel_colour), 78%, ' + bg_accent + '), url(' + resolved_bg + ')'}"
+      class           = "resume_element_container"   
     >
-      <div class="above_fold">
-        <h3>{{ element_data.name }}</h3>
-        <p class="year">{{ element_data.dates }}</p>
+      <div class = "resume_header">
+        <h3 id = "name">{{ name }}</h3>
+        <p  id = "year">{{ dates }}</p>
 
-        <div class="intro">
-          <p v-html="element_data.description"></p>
+        <div id = "intro">
+          <p v-html="description"></p>
         </div>
       </div>
 
-      <div :class="{'expand_below_fold': expand_element}" class="below_fold">
-        <p v-show="element_data.location != null" class="location">
-          <font-awesome-icon class="icon" icon="map-marker-alt" />
-          {{ element_data.location }}
+      <div 
+        :class = "{'expand': isActive}" 
+        id     = "content"
+      >
+        <p 
+          v-show = "location != null" 
+          id     = "location"
+        >
+          <font-awesome-icon 
+            id   = "icon"
+            icon = "map-marker-alt" 
+          />
+          {{ location }}
         </p>
 
         <div
-          id="expand_points_cont"
-          v-on:click="click_point"
-          v-bind:class="{ 'expand' : expand_element}"
+          id           = "content_container"
+          v-on:click   = "click_point"
+          v-bind:class = "{'expand' : isActive}"
         >
-          <CardScroll :element_data="element_data"></CardScroll>
+          <CardScroll :points="points"></CardScroll>
         </div>
       </div>
     </div>
@@ -34,163 +49,197 @@
 </template>
 
 <style scoped>
-.resume_element::after {
-  content: " ";
-
-  width: 16px;
+/*
+  Pin adjacent to the element that is placed on the timeline
+*/
+.template_pin {
+  width:  16px;
   height: 16px;
 
   background-color: var(--background-colour);
 
   position: absolute;
 
-  left: 29px;
-  top: 71px;
+  /* Timeline is 90px in width, 
+     circle width is 16px
+     border width is 5px (each side) */
+  left: calc(-1 * (45px + 8px + 5px));
 
-  border: solid 5px var(--panel_dark_embed);
+  /*
+    Height of the element is 130px
+    Circle width is 16px
+    border width is 5px
+
+    TODO: Fix hover
+  */
+  top:  calc(140px/2 - 8px - 5px);
+
+
+  border:        solid 5px var(--panel_dark_embed);
   border-radius: 100%;
 }
 
-.resume_element > div {
-  margin: 30px 0px 0px 90px;
+/*
+  Parent div for the entire element
+*/
+.resume_element {
+  margin-left:   90px; /* Margin for the timeline */
+  margin-bottom: 30px; /* Margin between elements */
 
-  padding: 35px 30px;
-  min-height: 120px;
-  max-height: 130px;
-
-  background-size: cover;
-  background-position: center;
-
+  /* Position relative for the timeline pin placement */
   position: relative;
-
-  overflow: hidden;
-
-  display: inline-grid;
-
-  width: calc(100% - 90px - (35px * 2) - 30px);
-
-  grid-template-columns: 45% 55%;
-  grid-template-rows: auto;
-
-  border-radius: 8px;
-  transition-duration: 0.6s;
-
-  box-shadow: -1px 6px 15px var(--box_shadow_colour);
 }
 
-.expand > div {
-  max-height: 800px;
+/*
+  Parent div for the resume element box
+*/
+.resume_element_container {  
 
-  grid-template-columns: 45% 55%;
+  /* 
+    We have to specify the max height here instead of just height
+    in order for the opening animation to occur smoothly
+  */
+  height:     auto;
+  max-height: 140px;
 
-  overflow-x: visible !important;
+  position: relative;
+  display:  block;
+
+  /* Configure the background */
+  background-size:     cover;
+  background-position: center;
+  box-shadow:          -1px 6px 15px var(--box_shadow_colour);
+
+  /* Hide below the fold content */
+  overflow: hidden;
+
+  border-radius:       8px;
+
+  transition-duration: 0.8s;
+}
+
+.resume_element_container.expand {
+  max-height: 1000px;
+
+  overflow-x: visible; /* TODO: Needed? */
 
   transition-duration: 1s;
 }
 
-.resume_element h3 {
-  height: auto;
+/*
+  Hover animation for the entire element
+*/
+.resume_element_container_hover:hover {
+  box-shadow: -3px 8px 20px var(--box_shadow_colour_intense);
+}
+
+/*
+  When the element is not active, increase
+  the height slightly when hovered
+*/
+.resume_element_container_hover:hover:not(.expand) {
+  max-height: 150px;
+}
+
+
+/*
+  Header of the element. Visible before and after the element is
+  expanded.
+*/
+.resume_header {
+  height: 150px; /* TODO: Change to var? */
+  width:  100%;
+
+  display:  inline-block;
+  position: relative;
+
+
+  /* Configure the padding without affecting the width/height */
+  -moz-box-sizing:    border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing:         border-box;
+  
+  padding-top:  15px;
+  padding-left: 20px;
+
+  transition-duration: .7s;
+}
+
+/*
+  Remove the default padding from the text elements
+*/
+.resume_header #name, #year, #intro {
   margin: 0px;
+}
 
-  white-space: nowrap;
+/*
+  Adjust the header when the element is expanded
+*/
+.expand .resume_header {
+  height: 160px;
 
+  padding-top:  25px;
+  padding-left: 35px;
+
+  border-bottom-left-radius:  10px;
+  border-bottom-right-radius: 10px;
+
+  background-color: var(--panel_header);
+}
+
+
+/* 
+  Header text styling
+  Only visible after expansion
+*/
+#name {
   font-size: 1.5rem;
+  width: 90%;
 }
 
-.resume_element.half h3, .resume_element.slim h3 {
-  white-space: normal;
-}
-
-.resume_element .year {
-  margin: 0px;
-  margin-top: 11px;
-
-  position: relative;
-
-  height: auto;
-
+#year {
   font-size: 1.1rem;
+
+  margin-top: 11px;
 }
 
-.resume_element .intro {
-  margin-top: 8px;
-  position: relative;
-
+#intro {
   font-size: 1.15rem;
-  height: calc(120px - 1.15rem - 40px);
-  line-height: calc(120px - 1.15rem - 30px);
-  word-wrap: none;
 }
 
-.resume_element .location {
+
+/*
+  Header location pin
+*/
+#location {
   position: absolute;
 
   right: 45px;
-  top: 20px;
+  top:   20px;
 
   text-shadow: 0px 0px 3px var(--box_shadow_colour_intense);
 }
 
-.icon {
+#icon {
   padding-right: 10px;
 }
 
-.resume_element .intro p {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-}
 
-.resume_element .above_fold {
-  height: 155px;
-  width: 100%;
-
-  display: inline-block;
-
-  position: relative;
-}
-
-.resume_element > div:hover {
-  max-height: 140px;
-
-  box-shadow: -3px 8px 20px var(--box_shadow_colour_intense);
-}
-
-.expanded:hover {
-  max-height: 800px !important;
-
-  box-shadow: -3px 8px 20px var(--box_shadow_colour_intense);
-}
-
-#expand_points_cont {
-  width: 100%;
-  height: auto;
-
-  padding-top: 60px;
-}
-
-.below_fold {
-  width: 100%;
-
-  display: inline-block;
-
+/*
+  Below the fold contentelement
+*/
+#content {
   max-height: 0px;
-
-  overflow: visible;
 
   opacity: 0;
 
   transition-duration: 0.8s;
 }
 
-.expand_below_fold {
+#content.expand {
   max-height: 1000px;
 
-  overflow: visible;
-
   opacity: 1;
-
-  transition-duration: 0.8s;
 }
 </style>
 
@@ -199,9 +248,14 @@ import CardScroll from "./CardScroll.vue";
 
 export default {
   props: {
-    title: String,
-    element_data: Object,
-    display_props: Object
+    name:          String,
+    dates:         String,
+    description:   String,
+    location:      String,
+    bg_accent:     String,
+    bg_image:      String,
+    timeline:      Boolean,
+    points:        Array,
   },
 
   components: {
@@ -210,23 +264,23 @@ export default {
 
   data: function() {
     return {
-      expand_element: true
+      isActive:    true,
+      resolved_bg: require('../assets/images/' + this.bg_image)
     };
   },
 
   methods: {
     hide() {
-      this.expand_element = false;
+      this.isActive = false;
     },
 
     toggle_element() {
-      if (this.display_props.expand) {
-        this.expand_element = !this.expand_element;
-      }
+      if (this.points && this.points.length > 0)
+        this.isActive = !this.isActive;
     },
 
     click_point(event) {
-      if (this.expand_element) 
+      if (this.isActive) 
         event.stopPropagation();
     }
   }

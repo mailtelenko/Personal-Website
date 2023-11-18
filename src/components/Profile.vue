@@ -1,22 +1,26 @@
 <template>
-  <div class="container">
-    <div class="profile">
-      <img class="profile_picture" alt="Profile picture" src="@/assets/Liam_Telenko.jpg" />
+  <div>
+    <div id="profile_pic_container">
+      <img id ="profile_picture"
+          alt="Profile picture"
+          v-bind:src="require('../assets/images/profile.jpg')"
+      />
     </div>
 
-    <div class="bio">
+    <div id="info">
       <h1 class="title">
-        Liam
-        <br />Telenko
+        Liam Telenko
       </h1>
 
-      <div class="info_container">
-        <p>{{ bio }}</p>
-      </div>
+      <p id="bio">{{ bio }}</p>
     </div>
 
-    <div class="call_to_action">
-      <button v-on:click="$emit('contact_button', 'show_contact')">Contact Me</button>
+    <div id="button_container">
+      <button 
+        v-on:click="$emit('contact_button', 'show_contact')"
+      >
+        Contact Me
+      </button>
     </div>
   </div>
 </template>
@@ -43,14 +47,15 @@ export default {
 /*
   Container element
 */
-.container {
-  width: 100%;
+#profile {
   height: 100vh;
-  margin: 0px;
+
+  display:   flex;
+  flex-flow: column;
 
   position: relative;
 
-  color: var(--default_text);
+  margin: 0px;
 
   background-color: var(--panel_colour);
 }
@@ -58,18 +63,23 @@ export default {
 /*
   Profile photo section
 */
-.profile {
+#profile_pic_container {
   height: 40vh;
 
-  position: relative;
+  /*
+    Center the child image
+    (horizontal & vertical)
+  */
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+
 }
 
-.profile_picture {
-  width: 55%;
-
-  position: absolute;
-  bottom: 4vh;
-  left: calc((100% - 55%) / 2);
+#profile_picture {
+  width:     55%;
+  min-width: 40px;
+  max-width: 30vh;
 
   border-radius: 100%;
 
@@ -77,61 +87,69 @@ export default {
 }
 
 /*
-  Bio section
+  Info section 
 */
-
-.bio {
-  height: 50vh;
+#info {
+  color: var(--default_text);
 }
 
-.bio div,
-h1 {
-  padding: 0px 15%;
-}
-
+/* 
+  Name text (header)
+*/
 .title {
-  font-size: 2.5rem;
-  line-height: 3rem;
+  height: 7vh;
 
-  margin: 2rem 0px 0px 0px;
-}
+  font-size:   2.5rem;
+  line-height: 7vh;
 
-.info_container {
-  height: calc(58vh - 8.5rem);
-
-  line-height: calc(58vh - 12.5rem);
-}
-
-p {
+  width: 100%;
   margin: 0px;
 
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
+  text-align: center;
 }
 
-button {
-  position: absolute;
+/*
+  Bio text
+*/
+#bio {
+  max-height: 30vh;
+  width:  80%;
+  
+  overflow-y: scroll;
 
-  bottom: 25px;
-  left: calc((100% - 155px) / 2);
+  margin: 5vh 10%;
 
-  width: 150px;
+  font-size:   1.1rem;
+  line-height: 1.8rem;
+
+  background-color: var(--panel_overlay);
+  border-radius: 10px;
+
+  /* Configure the padding without affecting the width/height */
+  -moz-box-sizing:    border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing:         border-box;
+
+  padding: 10%;  
 }
 
-@media (max-width: 800px) and (min-width: 600px) {
-  .profile_picture {
-    width: 40%;
-    left: calc((100% - 40%) / 2);
-  }
+/*
+  Contact button
+*/
+#button_container {
+  width: 100%;
 
-  .bio div,
-  h1 {
-    padding: 0px 25%;
-  }
+  /* Fill the rest of the vertical space */
+  flex:  1 1 auto;
+  
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+}
 
-  button {
-    bottom: 50px;
+@media only screen and (max-width: 1100px) {
+  #profile {
+    width: 100vw;
   }
 }
 </style>

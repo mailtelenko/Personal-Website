@@ -1,0 +1,49 @@
+/* 
+  Global button styling
+*/
+button {
+  height:  var(--button_height);
+
+  color:    white;
+  font-size:  1.1rem;
+
+  border:        none;
+  border-radius: 1000px;
+
+  padding: 0px 40px;
+
+  background-color: var(--accent_opp);
+
+  box-shadow: 0px 2px 15px var(--box_shadow_colour);
+
+  transition-duration: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.01, 1.01);
+
+  box-shadow: 0px 4px 15px var(--box_shadow_colour_intense);
+
+  background-color: var(--accent_opp_highlight);
+
+  cursor: pointer;
+}
+
+/* 
+  Remove the button outline when clicked
+*/
+button:focus {
+  outline: 0;
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.button_icon {
+  padding-right: 20px;
+}
