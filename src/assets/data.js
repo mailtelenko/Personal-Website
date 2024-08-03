@@ -32,7 +32,7 @@ export let data = {
       elements: [
         {
           name:        "McMaster University",
-          dates:       "2019 - Present",
+          dates:       "2019 - 2024",
           description: "Computer Engineering, (Co-Op)",
           image:       "mcmaster.jpg",
           points: [
