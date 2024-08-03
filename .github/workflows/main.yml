@@ -37,6 +37,8 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: taichi/actions-package-update@8a8152bdbafc8b77f061c02895607bf759244347
         uses:  'phips28/gh-action-bump-version@master'
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           skip-tag:  'true'
 
