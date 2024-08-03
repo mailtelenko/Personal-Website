@@ -10,7 +10,7 @@ export let data = {
   // =============
   // Profile
   // =============
-  bio: "I am a fourth-year Computer Engineering student studying at McMaster University. \
+  bio: "I am an Senior ASIC Digital Design Engineer at Synopsys working on SerDes IP verification. \
         I am passionate about computer hardware, with a particular interest in mixed-signal verification.",
     
   // =================
@@ -132,6 +132,37 @@ export let data = {
         display_grid: false,
 
         elements: [
+          {
+            name:        "Synopsys",
+            dates:       "2024 - Present",
+            location:    "Mississauga, ON",
+            description: "ASIC Digital Design, Senior Engineer",
+            points: [
+              {
+                content: [
+                  {
+                    title: "Experience",
+                    emoji: "💡",
+                    bullets: [
+                      "Verification of PAM4 SerDes PHY IP",
+                      "Fast and comprehensive root cause analysis of RTL simulation failures",
+                      "Testplan design and implementation"
+                    ]
+                  },
+                  {
+                    title: "Responsibilities",
+                    emoji: "📋",
+                    bullets: [
+                      "Feature and label verification ownership",
+                      "Supporting team debug and bring-up activities"
+                    ]
+                  }
+                ]
+              },
+            ],
+            image:    "silicon.jpg",
+            accent:   "rgba(20, 10, 95, .2)"
+          },
           {
             name:        "Synopsys",
             dates:       "2022 - 2023",
